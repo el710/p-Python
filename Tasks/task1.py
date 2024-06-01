@@ -26,3 +26,5 @@ val_b = 7
 val_c = 10
 val_f = (((val_a * val_b) + (val_a * val_c)) ** 3 ) / 2
 print(f'((({val_a} * {val_b}) + ({val_a} * {val_c})) ^ 3 ) / 2 = ', val_f, "\n")
+
+# end task 1
