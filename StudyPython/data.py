@@ -1,3 +1,5 @@
+import os
+os.system('cls')
 
 print('Here are examples with print() type() & data types')
 
