@@ -1,3 +1,6 @@
+
+# https://www.reg.ru/blog/5-klassnyh-veschej-kotorye-vy-mozhete-osvoit-s-python/ - 5 вещей, которые вы можете освоить с Python
+
 import os
 os.system('cls')
 
@@ -22,3 +25,7 @@ print("True and False = ", True and False)
 print("True or False = ", True or False)
 
 print("string number to integer number ", int('5'))
+
+# variables
+PersonName = "Maxitron" # str
+print('string variable "PersonName" - ', PersonName)
