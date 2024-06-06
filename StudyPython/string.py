@@ -19,3 +19,12 @@ print(string_b[0:3])  ## begin(def = 0) : last(ex def = len) : step
 print(string_b[0:5:2])
 
 print(string_b[::-1])
+
+# methods
+
+print("string in upper register".upper())
+print("STRING in lower register".lower())
+print("string in upper register".replace("upper", "lower"))
+
+
+input("press <Enter> if you dare...")
