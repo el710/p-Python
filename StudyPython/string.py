@@ -1,8 +1,6 @@
 import os
 os.system('cls')
 
-### https://habr.com/ru/companies/ruvds/articles/500296/ - 41 вопрос о работе со строками в Python
-
 
 print('Here is about strings & print()')
 
