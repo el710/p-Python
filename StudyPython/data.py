@@ -9,9 +9,15 @@ print(5,type(5))  # int (integer)
 print(3.14,type(3.14))  # float
 print("string", type("string"))  # str (string)
 
+my_string = ''' one line
+                and second line'''
+print("mulyiline string: ",my_string)
+
 print("'Hello' " + '"world"')
 
 print(True, False, type(True)) # bool (boolean)
+
+input("press <Enter> to continue...")
 
 # logic operands
 print('5 > 10', 5 > 10)  # >, <
@@ -36,9 +42,10 @@ name = 5
 print(name, type(name))
 name = 5.5
 print(name, type(name))
-name = [1,2]
+name = 1+2j
 print(name, type(name))
 
+input("press <Enter> to continue...")
 
 print("\n", "*** List[] - indexable, changable, extansionable, multitype elements")
 
@@ -72,6 +79,8 @@ print("is 'apple' not in lists -", result) # checkout for elements
 
 print("slice from [0] to [5] over 2 -",food[0:5:2])
 
+input("press <Enter> to continue...")
+
 print("\n", "*** Tuple() - indexable, locked elements & subchangable, nonextansionable, multitype elements, memory lighter")
 tuple_1 = 1, 2, 3, 4
 tuple_2 = (5, 6, 7, 8) + (5, 6)
@@ -94,6 +103,8 @@ print("multi tuple: ", tuple_1)
 food = [9, 10, True, "string"]
 print("List size - ", food.__sizeof__())
 print("Tuple size - ", tuple_3.__sizeof__())
+
+input("press <Enter> to continue...")
 
 print("\n*** Dictionary{} - paired item, indexable, changable, extansionable, multitype values")
 
@@ -127,6 +138,7 @@ print("get list of values -", items, type(items))
 items = phone_book.items()
 print("get list of items -", items, type(items))
 
+input("press <Enter> to continue...")
 
 print("\n*** Set{} - uniq items, nonordered, extansionable, multitype items")
 new_set = {1, 2, 3, 4, 5, 6, 3, 1, 2, "string", True, (9, 8, 7)}
@@ -141,5 +153,12 @@ res = new_list.remove('c')
 print("delete item 'c' by remove('item must exists') -", res, new_list)
 new_list.add("something new")
 print("add new item -", new_list)
+
+
+PersonName = ''.join(['s', 't', 'r', 'i', 'n', 'g']) ## list to string
+print('string from list -', PersonName)
+
+print(" list to dictionary: ", dict([['b', 1], ['a', 2]]))
+print(" tuple to dictionary: ", dict([('c', 3), ('d', 4)]))
 
 input("\n press <Enter> to leave...")

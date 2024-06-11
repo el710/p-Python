@@ -24,12 +24,6 @@ print(int_value2,'/',int_value1, ' = ', real_value)
 # the same
 print(7/5, type(7/5))
 
-# take whole part from division
-int_value = int_value2 // int_value1
-print(int_value2,'//',int_value1, ' = ', int_value)
-# the same
-print(7//5, type(7//5))
-
 # take whole part of the division
 int_value = int_value2 // int_value1
 print(int_value2,'//',int_value1, ' = ', int_value)
