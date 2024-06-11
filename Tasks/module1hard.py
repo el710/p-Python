@@ -15,27 +15,34 @@ buffer_list.sort()
 print("sort students: ", buffer_list)
 
 # make dictionary
-average = dict()
 
-ave = sum(grades[0]) / len(grades[0])
-name = buffer_list[0]
-average.update({name: ave})
+grades[0] = sum(grades[0]) / len(grades[0])
+grades[1] = sum(grades[1]) / len(grades[1])
+grades[2] = sum(grades[2]) / len(grades[2])
+grades[3] = sum(grades[3]) / len(grades[3])
+grades[4] = sum(grades[4]) / len(grades[4])
 
-ave = sum(grades[1]) / len(grades[1])
-name = buffer_list[1]
-average.update({name: ave})
+average = dict(zip(buffer_list, grades))
 
-ave = sum(grades[2]) / len(grades[2])
-name = buffer_list[2]
-average.update({name: ave})
+# ave = sum(grades[0]) / len(grades[0])
+# name = buffer_list[0]
+# average.update({name: ave})
 
-ave = sum(grades[3]) / len(grades[3])
-name = buffer_list[3]
-average.update({name: ave})
+# ave = sum(grades[1]) / len(grades[1])
+# name = buffer_list[1]
+# average.update({name: ave})
 
-ave = sum(grades[4]) / len(grades[4])
-name = buffer_list[4]
-average.update({name: ave})
+# ave = sum(grades[2]) / len(grades[2])
+# name = buffer_list[2]
+# average.update({name: ave})
+
+# ave = sum(grades[3]) / len(grades[3])
+# name = buffer_list[3]
+# average.update({name: ave})
+
+# ave = sum(grades[4]) / len(grades[4])
+# name = buffer_list[4]
+# average.update({name: ave})
 
 print("make dictionary of average grades: ", average)
 
