@@ -40,7 +40,7 @@ name = [1,2]
 print(name, type(name))
 
 
-print("\n", "*** Lists[] - indexable, changable, extansionable, multitype elements")
+print("\n", "*** List[] - indexable, changable, extansionable, multitype elements")
 
 food = ["apple", "coconut", "banana"] ## create
 print("create list -", food)
@@ -62,6 +62,8 @@ print("add several elements -", food)
 
 food.remove("string") # delete set
 print("delete element [string] -", food)
+item = food.pop(3)
+print("take element with delete -", food, item)
 
 result = "coconut" in food
 print("is 'coconut' in lists -", result) # checkout for elements
@@ -70,7 +72,7 @@ print("is 'apple' not in lists -", result) # checkout for elements
 
 print("slice from [0] to [5] over 2 -",food[0:5:2])
 
-print("\n", "*** Tuples - indexable, locked elements & subchangable, nonextansionable, multitype elements, memory lighter")
+print("\n", "*** Tuple() - indexable, locked elements & subchangable, nonextansionable, multitype elements, memory lighter")
 tuple_1 = 1, 2, 3, 4
 tuple_2 = (5, 6, 7, 8) + (5, 6)
 tuple_3 = tuple([9, 10, True, "string"])
@@ -93,14 +95,51 @@ food = [9, 10, True, "string"]
 print("List size - ", food.__sizeof__())
 print("Tuple size - ", tuple_3.__sizeof__())
 
+print("\n*** Dictionary{} - paired item, indexable, changable, extansionable, multitype values")
+
+phone_book = {'Denis': 81002223456, 'Max': 82003334567, 'Kolya': [2354, 5646]}
+print("create dictionary -", phone_book)
+print("value type of 'Kolya' -", type(phone_book['Kolya']))
+
+item = phone_book["Denis"]
+print("take element by key 'Denis': ", item, " type is ", type(item))
+item = phone_book.get('Kamila', "there is no such item")
+print("take not existing element by key 'Kamila': ", item)
+
+phone_book["Denis"] = 83004445678
+print("change item 'Denis' -", phone_book["Denis"])
+phone_book['Anton'] = 84005556789
+print("add new item -", phone_book)
+phone_book.update({'Sasha': 85006667890,
+                  'Alex': 86007778901})
+print("add set of items -", phone_book)
+
+del phone_book["Max"]
+print("delete item 'Max' -", phone_book)
+item = phone_book.pop('Anton')
+print("take value with delete -", phone_book, item)
+
+items = phone_book.keys()
+print("get list of keys -", items, type(items))
+items = phone_book.values()
+print("get list of values -", items, type(items))
+
+items = phone_book.items()
+print("get list of items -", items, type(items))
 
 
+print("\n*** Set{} - uniq items, nonordered, extansionable, multitype items")
+new_set = {1, 2, 3, 4, 5, 6, 3, 1, 2, "string", True, (9, 8, 7)}
+print("create set with uniq items -", new_set)
 
+new_list = ['a', 'b', 'c']
+new_list = set(new_list)
+print("create set from lists -", new_list)
+new_list.discard('b')
+print("delete item 'b' by discard('without error <not exists>') -", new_list)
+res = new_list.remove('c')
+print("delete item 'c' by remove('item must exists') -", res, new_list)
+new_list.add("something new")
+print("add new item -", new_list)
 
-
-
-
-
-
-
-input("press <Enter> to leave...")
+input("\n press <Enter> to leave...")
