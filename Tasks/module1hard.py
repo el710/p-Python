@@ -1,4 +1,5 @@
-import os
+import os, statistics
+
 os.system('cls')
 
 ## input data
@@ -16,13 +17,17 @@ print("sort students: ", buffer_list)
 
 # make dictionary
 
-grades[0] = sum(grades[0]) / len(grades[0])
-grades[1] = sum(grades[1]) / len(grades[1])
-grades[2] = sum(grades[2]) / len(grades[2])
-grades[3] = sum(grades[3]) / len(grades[3])
-grades[4] = sum(grades[4]) / len(grades[4])
+# grades[0] = sum(grades[0]) / len(grades[0])
+# grades[1] = sum(grades[1]) / len(grades[1])
+# grades[2] = sum(grades[2]) / len(grades[2])
+# grades[3] = sum(grades[3]) / len(grades[3])
+# grades[4] = sum(grades[4]) / len(grades[4])
 
-average = dict(zip(buffer_list, grades))
+grades[0] = statistics.mean(grades[0])
+grades[1] = statistics.mean(grades[1])
+grades[2] = statistics.mean(grades[2])
+grades[3] = statistics.mean(grades[3])
+grades[4] = statistics.mean(grades[4])
 
 # ave = sum(grades[0]) / len(grades[0])
 # name = buffer_list[0]
@@ -43,6 +48,8 @@ average = dict(zip(buffer_list, grades))
 # ave = sum(grades[4]) / len(grades[4])
 # name = buffer_list[4]
 # average.update({name: ave})
+
+average = dict(zip(buffer_list, grades))
 
 print("make dictionary of average grades: ", average)
 
