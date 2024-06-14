@@ -9,18 +9,28 @@
 
 ### https://www.reg.ru/blog/5-klassnyh-veschej-kotorye-vy-mozhete-osvoit-s-python/ - 5 вещей, которые вы можете освоить с Python
 
-import os
-os.system('cls')
+#import os
+#from time import sleep
 
-print('Freedom the World')
+#os.system('cls')
 
-name = input("Input your name: ")
-print("Hello,", name)
+print('Freedom')
 
-current_year = 2024
-date_of_birth = input("input your birth year: ")
-age = current_year - int(date_of_birth)
-print("You are", age)
+x = 43
+y = 32
+print(x * y)
+print("End line")
+
+
+# name = input("Input your name: ")
+# print("Hello,", name)
+#
+# current_year = 2024
+# date_of_birth = input("input your birth year: ")
+# age = current_year - int(date_of_birth)
+# print("....")
+# sleep(5)
+# print("You are", age, "old")
 
 
 
