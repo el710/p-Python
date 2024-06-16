@@ -21,11 +21,11 @@ print('Freedom Worth')
 # print(x * y)
 # print("End line")
 
-name = input("Input your name: ")
-if name == "Urban":
-   print("Hello admin")
-else:
-     print("Hello,", name)
+# name = input("Input your name: ")
+# if name == "Urban":
+#    print("Hello admin")
+# else:
+#      print("Hello,", name)
 
 #current_year = 2024
 #date_of_birth = input("input your birth year: ")
@@ -34,16 +34,42 @@ else:
 #sleep(5)
 #print("You are", age, "old")
 
-age = int(input("enter your code: "))
-if age % 3 == 0 and age % 5 == 0:
- print("FizzBuzz")
-elif age % 3 == 0:
- print("Fizz")
-elif age % 5 == 0:
-  print("Buzz")
-else:
- print("wrong code!!!")
+# age = int(input("enter your code: "))
+# if age % 3 == 0 and age % 5 == 0:
+#  print("FizzBuzz")
+# elif age % 3 == 0:
+#  print("Fizz")
+# elif age % 5 == 0:
+#   print("Buzz")
+# else:
+#  print("wrong code!!!")
 
-input("press <Enter> to leave...")
+###################################
+
+while True:
+  os.system('cls')
+  number = int(input("Input integer number: "))
+
+  if number % 2 == 0:
+    print(f" {number} is even")
+    sleep(2)
+    continue # no need to process...
+  else:
+    print(f"{number} is odd number")
+    if number == 7:
+      break
+  
+  print("processing odd number...")
+  sleep(4)
+
+print("cycle is off")
+
+
+
+
+
+
+
+input("\npress <Enter> to leave...")
 
 
