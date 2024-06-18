@@ -46,30 +46,62 @@ print('Freedom Worth')
 
 ###################################
 
-while True:
-  os.system('cls')
-  number = int(input("Input integer number: "))
+# print("'While' example ")
+# while True:
+#   os.system('cls')
+#   number = int(input("Input integer number: "))
 
-  if number % 2 == 0:
-    print(f" {number} is even")
-    sleep(2)
-    continue # no need to process...
-  else:
-    print(f"{number} is odd number")
-    if number == 7:
-      break
+#   if number % 2 == 0:
+#     print(f" {number} is even")
+#     sleep(2)
+#     continue # no need to process...
+#   else:
+#     print(f"{number} is odd number")
+#     if number == 7:
+#       break
   
-  print("processing odd number...")
-  sleep(4)
+#   print("processing odd number...")
+#   sleep(4)
 
-print("cycle is off")
+# print("cycle is off")
 
+#########################
 
+print("'For' example ")
+print("\n Ex1")
+for i in 1, 2, 3, 4: ## var in every iteration will get next element from list
+  print(i)
 
+print("\n Ex2")
+for i in range(5): ## range(start, STOP, step)
+  print(i)
 
+print("\n Ex3")
+for i in "hello": ## var from list
+  print(i)
 
+print("\n Ex4")
+my_list = ['one', 'two', 'three']
+for i in my_list: ## var from list
+  if i == 'three':
+    my_list.remove(i)
+print(my_list)
 
+print("\n Ex5")
+for i in range(len(my_list)):
+  print(my_list[i])
 
+print("\n Ex6")
+dict_ = {'a': 1, "b": 2, "c": 3}
+for i in dict_:
+  print(i, dict_[i])
+
+print("\n Ex7")
+dict_ = {'a': 1, "b": 2, "c": 3}
+for i, e in dict_.items():
+  print(i, e)
+
+############################################
 input("\npress <Enter> to leave...")
 
 
