@@ -67,39 +67,102 @@ print('Freedom Worth')
 
 #########################
 
-print("'For' example ")
-print("\n Ex1")
-for i in 1, 2, 3, 4: ## var in every iteration will get next element from list
-  print(i)
+# print("'For' example ")
+# print("\n Ex1")
+# for i in 1, 2, 3, 4: ## var in every iteration will get next element from list
+#   print(i)
 
-print("\n Ex2")
-for i in range(5): ## range(start, STOP, step)
-  print(i)
+# print("\n Ex2")
+# for i in range(5): ## range(start, STOP, step)
+#   print(i)
 
-print("\n Ex3")
-for i in "hello": ## var from list
-  print(i)
+# print("\n Ex3")
+# for i in "hello": ## var from list
+#   print(i)
 
-print("\n Ex4")
-my_list = ['one', 'two', 'three']
-for i in my_list: ## var from list
-  if i == 'three':
-    my_list.remove(i)
-print(my_list)
+# print("\n Ex4")
+# my_list = ['one', 'two', 'three']
+# for i in my_list: ## var from list
+#   if i == 'three':
+#     my_list.remove(i)
+# print(my_list)
 
-print("\n Ex5")
-for i in range(len(my_list)):
-  print(my_list[i])
+# print("\n Ex5")
+# for i in range(len(my_list)):
+#   print(my_list[i])
 
-print("\n Ex6")
-dict_ = {'a': 1, "b": 2, "c": 3}
-for i in dict_:
-  print(i, dict_[i])
+# print("\n Ex6")
+# dict_ = {'a': 1, "b": 2, "c": 3}
+# for i in dict_:
+#   print(i, dict_[i])
 
-print("\n Ex7")
-dict_ = {'a': 1, "b": 2, "c": 3}
-for i, e in dict_.items():
-  print(i, e)
+# print("\n Ex7")
+# dict_ = {'a': 1, "b": 2, "c": 3}
+# for i, e in dict_.items():
+#   print(i, e)
+
+#########################
+
+print("'Functions' example ")
+
+import random
+
+## define
+def simple():
+    print("simple(): this are some functions...")
+
+def get_data(a, b):               ## function takes arguments
+    print(f"get_data(): get arguments a: {a} b: {b}")
+
+def get_ini_data(a = 1, b = True):  ## function takes arguments with initialised means
+    print(f"get_ini_data(): ini arguments a: {a} b: {b}")
+
+def get_any_data(*args):          ## function takes any simple arguments and returns data
+    print(f"get_any_data(): any arguments: {args}", *args)
+    return args[0]
+
+def get_any_named_data(**kwargs):          ## function takes any named arguments
+    print("get_any_named_data(): any arguments: ", kwargs['a'], kwargs['b']) 
+
+def lottery(mon, thue):
+    tickets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    win1 = random.choice(tickets)
+    tickets.remove(win1) ## to avoid coincidence
+
+    win2 = random.choice(tickets)
+    print(f"lottery(): {mon}, {thue}")
+    return win1, win2
+
+
+## call
+simple()
+
+get_data(1, "string")
+get_data(True, {'a', 'b', 'c'})
+
+get_ini_data()
+get_ini_data([1, 2]) # give one argument 'list'
+get_ini_data(*[1, False]) # give list of arguments
+get_ini_data(*('tuple', 'allowed')) # give tuple of arguments
+get_ini_data(**{'a': 'set', 'b': 'dictionary'}) # give dictionary of arguments
+
+get_any_data([1, 2, 3])
+
+fun_back = get_any_data("string", "word")
+print("result:", fun_back)
+
+vars = {'a': 'alfa', 'b': 'beta'}
+get_any_named_data(**vars)
+
+win1, win2 = lottery('mon', 'thue')
+print(win1, win2)
+
+
+
+
+
+
+
 
 ############################################
 input("\npress <Enter> to leave...")
