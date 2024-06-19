@@ -28,11 +28,9 @@ def make_matrix(rows, cols, means):
     return res_m
 
 def show_matrix(*args): 
-    rows = len(*args)
     print("Square view:")
-
-    for i in range(rows):
-        print(f"show_matrix(): ",args[0][i])            
+    for i in args[0]:
+        print(f"show_matrix(): ",i)            
 
 
 print("Home work with functions...\n")
