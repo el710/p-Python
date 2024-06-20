@@ -30,7 +30,7 @@ def make_matrix(rows, cols, means):
 def show_matrix(*args): 
     print("Square view:")
     for i in args[0]:
-        print(f"show_matrix(): ",i)            
+        print(f"show_matrix(): ",*i, i)      
 
 
 print("Home work with functions...\n")

@@ -103,62 +103,66 @@ print('Freedom Worth')
 
 #########################
 
-print("'Functions' example ")
+# print("'Functions' example ")
 
-import random
+# import random
 
-## define
-def simple():
-    print("simple(): this are some functions...")
+# ## define
+# def simple():
+#     print("simple(): this are some functions...")
 
-def get_data(a, b):               ## function takes arguments
-    print(f"get_data(): get arguments a: {a} b: {b}")
+# def get_data(a, b):               ## function takes arguments
+#     print(f"get_data(): get arguments a: {a} b: {b}")
 
-def get_ini_data(a = 1, b = True):  ## function takes arguments with initialised means
-    print(f"get_ini_data(): ini arguments a: {a} b: {b}")
+# def get_ini_data(a = 1, b = True):  ## function takes arguments with initialised means
+#     print(f"get_ini_data(): ini arguments a: {a} b: {b}")
 
-def get_any_data(*args):          ## function takes any simple arguments and returns data
-    print(f"get_any_data(): any arguments: {args}", *args)
-    return args[0]
+# def get_any_data(*args):          ## function takes any simple arguments and returns data
+#     print(f"get_any_data(): any arguments: {args}", *args)
+#     return args[0]
 
-def get_any_named_data(**kwargs):          ## function takes any named arguments
-    print("get_any_named_data(): any arguments: ", kwargs['a'], kwargs['b']) 
+# def get_any_named_data(**kwargs):          ## function takes any named arguments
+#     print("get_any_named_data(): any arguments: ", kwargs['a'], kwargs['b']) 
 
-def lottery(mon, thue):
-    tickets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    win1 = random.choice(tickets)
-    tickets.remove(win1) ## to avoid coincidence
+# def lottery(mon, thue):
+#     tickets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#     win1 = random.choice(tickets)
+#     tickets.remove(win1) ## to avoid coincidence
 
-    win2 = random.choice(tickets)
-    print(f"lottery(): {mon}, {thue}")
-    return win1, win2
-
-
-## call
-simple()
-
-get_data(1, "string")
-get_data(True, {'a', 'b', 'c'})
-
-get_ini_data()
-get_ini_data([1, 2]) # give one argument 'list'
-get_ini_data(*[1, False]) # give list of arguments
-get_ini_data(*('tuple', 'allowed')) # give tuple of arguments
-get_ini_data(**{'a': 'set', 'b': 'dictionary'}) # give dictionary of arguments
-
-get_any_data([1, 2, 3])
-
-fun_back = get_any_data("string", "word")
-print("result:", fun_back)
-
-vars = {'a': 'alfa', 'b': 'beta'}
-get_any_named_data(**vars)
-
-win1, win2 = lottery('mon', 'thue')
-print(win1, win2)
+#     win2 = random.choice(tickets)
+#     print(f"lottery(): {mon}, {thue}")
+#     return win1, win2
 
 
+# ## call
+# simple()
 
+# get_data(1, "string")
+# get_data(True, {'a', 'b', 'c'})
+
+# get_ini_data()
+# get_ini_data([1, 2]) # give one argument 'list'
+# get_ini_data(*[1, False]) # give list of arguments
+# get_ini_data(*('tuple', 'allowed')) # give tuple of arguments
+# get_ini_data(**{'a': 'set', 'b': 'dictionary'}) # give dictionary of arguments
+
+# get_any_data([1, 2, 3])
+
+# fun_back = get_any_data("string", "word")
+# print("result:", fun_back)
+
+# vars = {'a': 'alfa', 'b': 'beta'}
+# get_any_named_data(**vars)
+
+# win1, win2 = lottery('mon', 'thue')
+# print(win1, win2)
+
+
+m_list = list(range(1,10))
+print(m_list)
+
+num = 1
+print("%02d" % num)
 
 
 
