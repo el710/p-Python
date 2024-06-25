@@ -97,7 +97,12 @@ input("Press <Enter> to continue...")
 
 # print("slice from [0] to [5] over 2 -",food[0:5:2])
 
-# input("press <Enter> to continue...")
+num_list = [1, 2, 3, 4, 5]
+print("sum of list elements:", sum(num_list))
+
+
+
+input("press <Enter> to continue...")
 
 # print("\n", "*** Tuple() - indexable, locked elements & subchangable, nonextansionable, multitype elements, memory lighter")
 # tuple_1 = 1, 2, 3, 4

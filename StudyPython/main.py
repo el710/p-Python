@@ -133,6 +133,8 @@ print('Freedom Worth')
 #     print(f"lottery(): {mon}, {thue}")
 #     return win1, win2
 
+def hello_func(name, age):
+    return (f"Hello {name} at {age}")
 
 # ## call
 # simple()
@@ -142,6 +144,7 @@ print('Freedom Worth')
 
 # get_ini_data()
 # get_ini_data([1, 2]) # give one argument 'list'
+# get_ini_data(b=10) # set value by key
 # get_ini_data(*[1, False]) # give list of arguments
 # get_ini_data(*('tuple', 'allowed')) # give tuple of arguments
 # get_ini_data(**{'a': 'set', 'b': 'dictionary'}) # give dictionary of arguments
@@ -157,12 +160,37 @@ print('Freedom Worth')
 # win1, win2 = lottery('mon', 'thue')
 # print(win1, win2)
 
+# print(hello_func('Ann', 23))
 
-m_list = list(range(1,10))
-print(m_list)
 
-num = 1
-print("%02d" % num)
+# m_list = list(range(1,10))
+# print(m_list)
+
+# num = 1
+# print("%02d" % num)
+# num += 2
+
+################### area of variables
+
+## global 
+a = 10
+b = 20
+
+def func(f, *, s, t):   # * - means i must set values after that (s & t) namelly
+    global a, b # use global variables
+    a = "hell"
+    b = "ow"
+## there are local
+    c = 30
+    d = 40
+    print(c, d) 
+
+
+print(a, b)
+func(1, s=2, t=3) # s & t keword-only, because of '*' in function definition
+print(a, b)
+## print(c, d) we can't use it here
+
 
 
 

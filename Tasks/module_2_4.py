@@ -17,8 +17,9 @@ not_primes = []
 for item in numbers[1: list_size]:
     is_prime = True
     
-    for dev in range(item):
-        if dev > 1 and item % dev == 0:
+    for dev in range(2, item):
+        # if dev > 1 and item % dev == 0:
+        if item % dev == 0:   
            is_prime = False
            break
         

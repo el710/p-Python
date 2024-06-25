@@ -45,7 +45,7 @@ def find_key(code):
                      my_key = my_key + str(base_dig) + str(i) + ' '
                      # print(f"{base_dig}: {i} = {my_sum}")
                 
-           base_dig = base_dig + 1
+           base_dig += 1
 
       return my_key
       
@@ -53,7 +53,6 @@ def find_key(code):
 stone_1 = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
 show(0)
-
 input("\nPress <Enter> to choose Code...")
 for i in stone_1:
     show(1, i)
