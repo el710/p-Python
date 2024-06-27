@@ -9,10 +9,11 @@
 
 ### https://www.reg.ru/blog/5-klassnyh-veschej-kotorye-vy-mozhete-osvoit-s-python/ - 5 вещей, которые вы можете освоить с Python
 
-import os
-from time import sleep
+import os                 ## link library 'os' - function call need full path  os.system
+##import time*             ## link all from library 'math' - function call sin()
+from time import sleep    ## link only function sleep() from library 'time' - function call sleep()
 
-#os.system('cls')
+os.system('cls')
 
 print('Freedom Worth')
 
