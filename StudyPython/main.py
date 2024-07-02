@@ -137,6 +137,22 @@ print('Freedom Worth')
 def hello_func(name, age):
     return (f"Hello {name} at {age}")
 
+def info(pos_value, *any_values, named=3.14, **any_named): ## all types of args and declaration order
+    print(pos_value)
+    print(any_values)
+    print(named)
+    print(any_named)
+    return None
+
+### there is recursion
+def sum(n):
+    if n == 0:
+        return 0
+    else:
+        return n + sum(n - 1)
+
+print(f"Calc sum by recursive: sum(5) = {sum(5)}")
+
 # ## call
 # simple()
 
@@ -186,12 +202,20 @@ def func(f, *, s, t):   # * - means i must set values after that (s & t) namelly
     d = 40
     print(c, d) 
 
+ 
 
 print(a, b)
 func(1, s=2, t=3) # s & t keword-only, because of '*' in function definition
 print(a, b)
 ## print(c, d) we can't use it here
 
+args = (1, 2, 3, 4, 5, 6)
+
+for i in range(6):
+    print(args[i])
+
+for i in args:
+    print(i)
 
 
 
