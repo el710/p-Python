@@ -34,6 +34,11 @@ print(True, False, type(True)) # bool (boolean)
 print("True and False = ", True and False)
 print("True or False = ", True or False)
 
+a_list = [1, 1, 0]
+print("any(): ", any(a_list)) # is there any true element
+print("all(): ", all(a_list)) # are all elements true 
+print("isinstant(): ", isinstance(a_list, list)) # ~ type(a_list) == list - is a_list a list class
+
 name = 1+2j
 print(name, type(name))
 
@@ -98,8 +103,13 @@ input("Press <Enter> to continue...")
 # print("slice from [0] to [5] over 2 -",food[0:5:2])
 
 num_list = [1, 2, 3, 4, 5]
-print("sum of list elements:", sum(num_list))
+print("/nsum of list elements:", sum(num_list))
+print("number of list elements:", len(num_list))
+print("middle mean:", sum(num_list) / len(num_list))
+print("max from list elements:", max(num_list))
+print("min from list elements:", min(num_list))
 
+print("attributes & methods of object list:", dir(a_list))
 
 
 input("press <Enter> to continue...")
@@ -187,5 +197,18 @@ print("add new item -", new_list)
 
 # print(" list to dictionary: ", dict([['b', 1], ['a', 2]]))
 # print(" tuple to dictionary: ", dict([('c', 3), ('d', 4)]))
+
+first_list = [1, 2, 3, 4, 5]
+second_list = ['a', 'b', 'c', 'd', 'f']
+
+zip_set = zip(first_list, second_list)
+list_z = list(zip_set)  ## after call zip object - it will eleminated
+dict_z = dict(zip_set) ## here will be empty dictionary
+print(zip_set, *zip_set)
+print(list_z)
+print(dict_z)
+
+
+
 
 input("\n press <Enter> to leave...")

@@ -9,6 +9,8 @@
 
 ### https://www.reg.ru/blog/5-klassnyh-veschej-kotorye-vy-mozhete-osvoit-s-python/ - 5 вещей, которые вы можете освоить с Python
 
+### https://drive.google.com/file/d/1SUOHiI5Qicp0clk9OLIwkdySWluNbWJZ/view?usp=drive_link
+
 import os                 ## link library 'os' - function call need full path  os.system
 ##import time*             ## link all from library 'math' - function call sin()
 from time import sleep    ## link only function sleep() from library 'time' - function call sleep()
@@ -135,7 +137,14 @@ print('Freedom Worth')
 #     return win1, win2
 
 def hello_func(name, age):
+    '''
+    Documentation: simple function
+    '''
     return (f"Hello {name} at {age}")
+
+print(help(hello_func))
+## or
+print(hello_func.__doc__)
 
 def info(pos_value, *any_values, named=3.14, **any_named): ## all types of args and declaration order
     print(pos_value)
@@ -221,7 +230,14 @@ for i in args:
 
 
 
+
 ############################################
 input("\npress <Enter> to leave...")
 
 
+## to make exe need:
+## install package:  pip install pyinstall (in terminal)
+## > pyinstaller --onefile -w 'file.py'
+
+## pip install auto-py-to-exe - window interface
+## > auto-py-to-exe
