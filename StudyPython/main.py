@@ -11,8 +11,8 @@
 
 ### https://drive.google.com/file/d/1SUOHiI5Qicp0clk9OLIwkdySWluNbWJZ/view?usp=drive_link
 
-import os                 ## link library 'os' - function call need full path  os.system
-##import time*             ## link all from library 'math' - function call sin()
+import os                 ## include library 'os' - function call need full path  os.system
+##import math*             ## link all from library 'math' - function call sin()
 from time import sleep    ## link only function sleep() from library 'time' - function call sleep()
 
 os.system('cls')
@@ -152,6 +152,17 @@ def info(pos_value, *any_values, named=3.14, **any_named): ## all types of args 
     print(named)
     print(any_named)
     return None
+
+
+## lambda function
+## only one string
+## <name> = lambda <args>: <function>
+result = lambda x, y: x + y
+print(result(5, 7))
+
+
+
+
 
 ### there is recursion
 def sum(n):
