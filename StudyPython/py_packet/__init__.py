@@ -1,0 +1,1 @@
+print(" This is init from pack py_packet")
