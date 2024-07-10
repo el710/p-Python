@@ -1,9 +1,5 @@
-import os
-from fake_math import divide as fm_dev
-from true_math import divide as tm_dev
-
-
-os.system('cls')
+from homework4_1.fake_math import divide as fm_dev
+from homework4_1.true_math import divide as tm_dev
 
 print('Work with import modules....\n')
 
