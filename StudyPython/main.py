@@ -17,6 +17,8 @@ from time import sleep    ## link only function sleep() from library 'time' - fu
 
 os.system('cls')
 
+import this ## python programming rules
+
 print('Freedom Worth')
 
 # x = 43
@@ -209,6 +211,9 @@ print(f"Calc sum by recursive: sum(5) = {sum(5)}")
 
 ################### area of variables
 
+print(globals()) ## list of global namespace
+print(locals())  ## list of local namespace
+
 ## global 
 a = 10
 b = 20
@@ -220,22 +225,35 @@ def func(f, *, s, t):   # * - means i must set values after that (s & t) namelly
 ## there are local
     c = 30
     d = 40
-    print(c, d) 
-
- 
+    print("View namespaces", c, d) 
 
 print(a, b)
 func(1, s=2, t=3) # s & t keword-only, because of '*' in function definition
 print(a, b)
 ## print(c, d) we can't use it here
 
+g = 6              ## global g
+def one_slice(x):
+    g = x + 6         ## local g for one_slice
+    def two_slice(x):
+        nonlocal g      ## use g from one_slice
+        ## global g     ## use global g
+        g = x + 9
+        print("middle namespace", g)
+    
+    two_slice(g)
+    return g
+
+print(f"Slices: {g} -> ", one_slice(g))
+
+  
 args = (1, 2, 3, 4, 5, 6)
 
 for i in range(6):
-    print(args[i])
+    print("for by index: - ", args[i])
 
 for i in args:
-    print(i)
+    print("for by element: - ", i)
 
 
 
