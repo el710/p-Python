@@ -6,7 +6,6 @@
 
 
 class Human:
-
     Head = True ## attribute of class
 
     ##def __new__(cls) -> Self: ## start first
@@ -15,6 +14,8 @@ class Human:
         self.name = name  ## attribute of object
         self.age = age
         self.about()
+        if type(self) != Human:
+            self.tellabout() # method of child Student
     
     def __del__(self) -> None: # distructor
         print(f"{self.name} is left the world")
@@ -48,6 +49,15 @@ class Human:
     def __str__(self) -> str:
         return self.name
     
+## inheritance
+class Student(Human):
+
+    def tellabout(self):
+        print("I am student")
+
+
+student = Student("Lex", 23) ## it uses __init of Human
+
 
 ben = Human("Bender", 17)
 max = Human("Max", 24)
@@ -85,6 +95,7 @@ print(Human.__mro__) # inheritance chain
 
 class User:
     __instance = None
+    var_a = None
 
     def __new__(cls, *args, **kwargs):
         ## here cls - is link to class User
@@ -101,6 +112,15 @@ class User:
             setattr(self, key, value)     ## self.name = kwargs.get('name')
                                           ## self.age = kwargs.get('age') e.t.c ...
 
+    def print_that(self, leb):
+        User.var_a = leb
+        print(User.__instance)
+
+    def print_it(self):
+        User.print_that(self, 'pro')
+        print("Object method\n")
+        
+
 at_list = (1, 2, 3)
 at_dict = {'name': 'Bender', 'age': 35, 'gender': 'male'}
 
@@ -108,6 +128,8 @@ user1 = User(*at_list, **at_dict)
 # user2 = User() ## because of __instance it will be the same object user1
 # print(user1 is user2)
 
+user1.print_it()
+user1.print_that('dfg')
 
 print(user1.__dict__)
 
