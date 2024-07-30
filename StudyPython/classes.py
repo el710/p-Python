@@ -156,16 +156,11 @@ user1.print_that('dfg')
 
 print(user1.__dict__)
 
-
-
 input("press <Enter>")
 
         
-"""
-Tasks:
 
-module_6_2
-"""
+from ..Tasks import module_5_3, module_5_4, module_6_1, module_6_2, module_6_3
 
 
 
