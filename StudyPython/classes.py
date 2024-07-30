@@ -1,5 +1,5 @@
 ### 
-# OOP: inheritance - 
+# OOP: inheritance - class Human -> class Men(Human)
 #      incapsulation - 
 #      polimorphizm -  
 # ###
@@ -7,6 +7,9 @@
 
 class Human:
     Head = True ## attribute of class
+    _legs = True ## this var not available in other modules(files) because of '_'
+    __arms = True ## this var is uniq for this class and its decsendants because of '__'
+                  ## __arms in descendant class will be different: Parent_class.__arms !=  Child_class.__arms
 
     ##def __new__(cls) -> Self: ## start first
 
@@ -14,7 +17,7 @@ class Human:
         self.name = name  ## attribute of object
         self.age = age
         self.about()
-        if type(self) != Human:
+        if type(self) != Human and type(self) != Teacher:
             self.tellabout() # method of child Student
     
     def __del__(self) -> None: # distructor
@@ -49,14 +52,34 @@ class Human:
     def __str__(self) -> str:
         return self.name
     
+    def status(self):
+        print(f"head - {self.Head}")
+        print(f"legs - {self._legs}")
+        print(f"arms - {self.__arms}")
+    
 ## inheritance
 class Student(Human):
 
     def tellabout(self):
         print("I am student")
 
+class Teacher(Human):
+    __arms = 'other arms' ## this is _Human__arms - Teacher doesn't have itsown __arms
+    pass
+
+human = Human('Homo', 45)
+human.status()
 
 student = Student("Lex", 23) ## it uses __init of Human
+teacher = Teacher('Nick', 56)
+
+#check out for __arms
+print(dir(human), '\n')
+print(dir(teacher))
+## print(teacher.__arms) - make error
+print(teacher._Human__arms)
+teacher.status()
+input('press <Enter> to continue...')
 
 
 ben = Human("Bender", 17)
@@ -138,7 +161,11 @@ print(user1.__dict__)
 input("press <Enter>")
 
         
+"""
+Tasks:
 
+module_6_2
+"""
 
 
 

@@ -1,7 +1,7 @@
 import os
 os.system('cls')
 
-print(dir(os))
+print(dir())
 ## runned file named as default __main__
 ## included file named by its filename
 
@@ -20,6 +20,12 @@ print("Main module:....")
 
 from submodule1 import * ## import as include global names
 hello_mod(var_a)
+
+print(dir())
+
+## but we can't use 
+# _not_available_var_in_other_modules &
+# _not_available_func_in_other_modules()
 
 ## to make package from directory
 ## we need make file __init__.py in this directory
