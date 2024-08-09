@@ -32,25 +32,20 @@ class _Figure():
     sides_count = 0
 
     def __init__(self, rgb, side_count) -> None:
-        self.__sides = [1] * side_count
-        # print(f"Figure init: {rgb}, {side_count}")
         self.set_color(*rgb)
+        self.__sides = [1] * side_count
         self.sides_count = side_count
         self.filled = False
     
     def __is_valid_color(self, *rgb):
-        # input(f"__is_valid_color: {rgb} - {rgb[0]}")
         if rgb[0] in range(256) and rgb[1] in range(256) and rgb[2] in range(256):
             return True
         return False
     
     def __is_valid_sides(self, *sides_value):
-        # input(f"_is_valid_sides: len - {len(sides_value)}")
-        # input(f"_is_valid_sides: value - {sides_value}")
         if len(sides_value) == len(self.__sides):
             for i in sides_value:
                 if i <= 0:
-                    # print("_is_valid_sides: wrong number")
                     return False
             return True
         else:
@@ -77,7 +72,6 @@ class _Figure():
     
 class Circle(_Figure):
     def __init__(self, rgb, *sides) -> None:
-        # print(f"Circle init: {rgb} - {sides}")
         super().__init__(rgb, _CIRCLE_SIDE_COUNT)
         if len(sides) != self.sides_count:
             self.set_sides(_DEF_SIDE_LENGTH)
@@ -85,10 +79,8 @@ class Circle(_Figure):
             self.set_sides(sides[0])
 
     def set_sides(self, *sides):
-        # print(f"circle set_sides: {sides}")
         super().set_sides(*sides)
         side = self.get_sides()
-        # print(f"circle set_sides: get - {side}")
         self.radius = side[0] / (2 * pi)
     
     def get_square(self):
@@ -134,12 +126,11 @@ class Triangle(_Figure):
 class Cube(_Figure):
     def __init__(self, rgb, *sides) -> None:
         super().__init__(rgb, _CUBE_SIDE_COUNT)
-        self.__sides = None
+        self.__sides = [1] * _CUBE_SIDE_COUNT
         if len(sides) != 1:
             self.set_sides(_DEF_SIDE_LENGTH)
         else:
             self.set_sides(*sides)
-
     
     def __is_valid_sides(self, *sides_value):
         if len(sides_value) != 1 or sides_value[0] <= 0:
@@ -148,12 +139,8 @@ class Cube(_Figure):
 
     def set_sides(self, *new_sides):
         if self.__is_valid_sides(*new_sides):
-            # print(f"Cube set_sides: args - {new_sides}")
-            self.__sides = [new_sides[0]] * self.sides_count
-            # print(f"Cube set_sides: sides - {self.__sides}")
-        else:
-            #print(f"Cube set_sides: sides - {self.__sides}")
-            pass
+            self.__sides = [new_sides[0]] * self.sides_count   
+
     
     def get_sides(self):
         return self.__sides
