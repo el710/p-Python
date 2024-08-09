@@ -159,8 +159,53 @@ print(user1.__dict__)
 input("press <Enter>")
 
         
+####################################
+# About multiinheritance
+class Arm():
+    def __init__(self) -> None:
+        self.arms = 2
+        super().__init__() # this adds chain from Animal to Leg
 
-from ..Tasks import module_5_3, module_5_4, module_6_1, module_6_2, module_6_3
+    def get_arms(self):
+        return self.arms
+    
+
+class Leg():
+    def __init__(self) -> None:
+        self.legs = 2
+
+    def get_legs(self):
+        return self.legs
+
+
+class Animal(Arm, Leg):
+    def make(self, arms, legs) -> None:
+        self.arms = arms
+        self.legs = legs
+    
+    def status(self):
+        return f"{self.arms} - arms, {self.legs} - legs"
+        
+
+
+animal = Animal()
+print(Animal.__mro__, "\n")
+
+print(animal.status())
+
+animal.make(3, 5)
+print(animal.status())
+
+
+
+
+
+
+'''
+
+from ..Tasks import module_5_1, module_5_2, module_5_3, module_5_4, module_6_1, module_6_2, module_6_3
+
+'''
 
 
 

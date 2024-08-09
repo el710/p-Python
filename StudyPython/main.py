@@ -11,9 +11,14 @@
 
 ### https://drive.google.com/file/d/1SUOHiI5Qicp0clk9OLIwkdySWluNbWJZ/view?usp=drive_link
 
-import os                 ## include library 'os' - function call need full path  os.system
-##import math*             ## link all from library 'math' - function call sin()
+import os                 ## include library 'os' - function call need full path  os.system()
+from math import *        ## link all from library 'math' - function call sin()
 from time import sleep    ## link only function sleep() from library 'time' - function call sleep()
+## from <path>.<filename> import < filename / function / *(all) >
+
+'''
+from ..Tasks import module_4_1
+'''
 
 os.system('cls')
 
@@ -163,9 +168,6 @@ result = lambda x, y: x + y
 print(result(5, 7))
 
 
-
-
-
 ### there is recursion
 def sum(n):
     if n == 0:
@@ -208,6 +210,13 @@ print(f"Calc sum by recursive: sum(5) = {sum(5)}")
 # num = 1
 # print("%02d" % num)
 # num += 2
+
+
+'''
+from ..Tasks import module_3_2, module_3_3, module_3_4, module_3_5
+'''
+
+
 
 ################### area of variables
 
@@ -255,8 +264,9 @@ for i in range(6):
 for i in args:
     print("for by element: - ", i)
 
-
-
+'''
+from ..Tasks import module_4_2
+'''
 
 
 
