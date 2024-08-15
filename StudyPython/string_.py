@@ -26,5 +26,25 @@ print("string in upper register".upper())
 print("STRING in lower register".lower())
 print("string in upper register".replace("upper", "lower"))
 
+print('Hello') # ASCII
+print(ord('a')) # code
+
+_a = 'Hello'
+chars = []
+for i in _a:
+    chars.append(ord(i))
+print(chars)
+
+s = ''
+for i in chars:
+    s += chr(i)
+print(s)
+
+## byte
+_b = b'\x68' ## give Hex code 'h' - 0x68
+print(_b, type(_b))
+print(_b.decode())
+
 
 input("press <Enter> if you dare...")
+

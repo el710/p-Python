@@ -1,19 +1,23 @@
 ### 
 # OOP: inheritance - class Human -> class Men(Human)
-#      incapsulation - 
-#      polimorphizm -  
+#      incapsulation - public, protected, private data
+#      polimorphizm -  one interface - for multitype data: print(123), print('abc'), ...
+#      abstarcation - 
 # ###
 
 
 class Human:
-    Head = True ## attribute of class
-    _legs = True ## this var not available in other modules(files) because of '_'
-    __arms = True ## this var is uniq for this class and its decsendants because of '__'
-                  ## __arms in descendant class will be different: Parent_class.__arms !=  Child_class.__arms
+    ## allways heritable attributes
+    Head = True ## public attribute of class
+    _legs = True ## protected attribute - not available in other modules(files) because of '_'
+    ## nonheritable
+    __arms = True ## private attribute - it is uniq for this class only because of '__'
+                  ## it's allows to make __arms in descendant class but: Parent_class.__arms !=  Child_class.__arms
 
     ##def __new__(cls) -> Self: ## start first
 
     def __init__(self, name, age) -> None:  # here is initialization
+        ## attributes are heritable if descendate uses parent's __init__
         self.name = name  ## attribute of object
         self.age = age
         self.about()
@@ -64,7 +68,7 @@ class Student(Human):
         print("I am student")
 
 class Teacher(Human):
-    __arms = 'other arms' ## this is _Human__arms - Teacher doesn't have itsown __arms
+    __arms = "Teacher's arms" ## Teacher doesn't have Human.__arms but object can call it by 'teacher._Human__arms'
     pass
 
 human = Human('Homo', 45)
@@ -197,7 +201,65 @@ animal.make(3, 5)
 print(animal.status())
 
 
+####################################
+## abstract
+class Xanimal():
+    era = 'kainozoi'
+    _width = 5
+    __nick = 'beast'
+    def __init__(self, age, name):
+        self.age = age
+        self.name = name
+        self._length = 10
+        self.__tall = 15
+    
+    def eat(self):
+        return 0
+    
+class Xbird(Xanimal):
 
+    def speak(self):
+        print("Au")
+    
+    def get_nick(self):
+        print(self.__nick)
+
+class Xlion(Xbird):
+    pass
+
+
+bird = Xbird(10, "aist")
+print(bird.age)
+print(bird.name)
+print(bird.eat())
+
+## public attribute
+print(bird.era)
+
+## private attribute
+# print(bird.__nick) - error
+# but
+print(bird._Xbird__nick)
+bird._Xbird__nick = 'fine' ## can change this
+bird.get_nick()
+# and also
+print(bird._Xanimal__nick)
+bird._Xanimal__nick = 'good' ## can change that
+print(bird._Xanimal__nick)
+
+print(bird._width)
+bird._width = 7
+print(bird._width)
+print(bird._length)
+# print(bird.__tall) - error
+print(bird._Xbird__tall)
+print(bird._Xanimal__tall)
+
+bird.speak()
+
+lion = Xlion(12, "alex")
+lion.speak()
+print(lion.era)
 
 
 
