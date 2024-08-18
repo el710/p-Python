@@ -9,9 +9,9 @@ def custom_write(file_name, strings):
     _file = open(file_name, 'w', encoding='utf-8')
 
     for i in range(len(strings)):
-        rec = (i + 1, _file.tell())
-        _file.write(f"{strings[i]}\n")
-        strings_positions[rec] = strings[i]
+        _key = (i + 1, _file.tell())
+        _file.write(strings[i] + '\n')
+        strings_positions[_key] = strings[i]
 
     _file.close()
     return strings_positions
