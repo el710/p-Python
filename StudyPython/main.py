@@ -111,6 +111,23 @@ print('Freedom Worth')
 # for i, e in dict_.items():
 #   print(i, e)
 
+strings = ["Text for tell.",
+        "Используйте кодировку utf-8.",
+        "Because there are 2 languages!",
+        "Спасибо!"
+    ]
+
+strings_positions = {}
+
+for idx, item in enumerate(strings):
+    _key = (idx + 1, len(item))
+    strings_positions[_key] = item
+
+print(strings_positions)
+
+
+input("\npress <Enter> to continue...")
+
 #########################
 
 # print("'Functions' example ")
