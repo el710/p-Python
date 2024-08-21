@@ -45,6 +45,8 @@ _b = b'\x68' ## give Hex code 'h' - 0x68
 print(_b, type(_b))
 print(_b.decode())
 
+print("print always ended line with '\n'")  ## '\n' - default
+print("but we can change it - ", end='') 
 
 input("press <Enter> if you dare...")
 

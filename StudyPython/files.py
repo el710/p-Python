@@ -64,3 +64,20 @@ print("seekable: ", _file.seekable())
 print("closed: ", _file.closed)
 print("Name: ", _file.name)
 print("buffer: ", _file.buffer)
+
+
+###########
+## using 'with'
+## analog 'try - finally'
+# with <exprassion> as <target object>
+#     <action>
+
+with open('test.txt', encoding='utf-8') as file: 
+    for line in file:
+        for char in line:
+            print(char, end='')
+## here 'with' automatically closes the file
+
+'''
+import module_7_1.py, module_7_2.py module_7_3.py
+'''

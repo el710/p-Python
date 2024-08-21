@@ -40,17 +40,6 @@ class WordsFinder():
 
     def count(self, search_word):
         return self.find(search_word, 'all')
-    
-        # all_words = self.get_all_words()
-        # result_dict = {}
-        # for _filename, _dict in all_words.items():
-        #     _is_count = 0
-        #     for _id, _word in enumerate(_dict):
-        #         if str.lower(search_word) == _word:
-        #             _is_count += 1
-        #     if _is_count:
-        #         result_dict[_filename] = _is_count
-        # return result_dict
 
 
 if __name__ == '__main__':
