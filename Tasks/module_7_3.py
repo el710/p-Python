@@ -28,7 +28,7 @@ class WordsFinder():
         for _filename, _dict in all_words.items():
             _is_find = 0
             for _id, _word in enumerate(_dict):
-                if str.lower(search_word) == _word:
+                if search_word.lower() == _word:
                     if _how == 'first':
                         _is_find = _id + 1
                         break
@@ -53,9 +53,9 @@ if __name__ == '__main__':
     print(finder2.count('teXT'))
 
 
-    finder1 = WordsFinder('Walt Whitman - O Captain! My Captain!.txt',
-                      'Rudyard Kipling - If.txt',
-                      'Mother Goose - Monday’s Child.txt')
-    print(finder1.get_all_words())
-    print(finder1.find('the'))
-    print(finder1.count('the'))
+    # finder1 = WordsFinder('Walt Whitman - O Captain! My Captain!.txt',
+    #                   'Rudyard Kipling - If.txt',
+    #                   'Mother Goose - Monday’s Child.txt')
+    # print(finder1.get_all_words())
+    # print(finder1.find('the'))
+    # print(finder1.count('the'))
