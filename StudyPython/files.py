@@ -1,4 +1,5 @@
 from os import system
+import os
 
 system('cls')
 
@@ -77,6 +78,38 @@ with open('test.txt', encoding='utf-8') as file:
         for char in line:
             print(char, end='')
 ## here 'with' automatically closes the file
+
+print(f"current directory: {os.getcwd()}")
+
+if not os.path.exists('second'):
+    os.mkdir('second')
+os.chdir('second') ## go to in to
+
+print(f"current directory: {os.getcwd()}")
+
+## make nested directory
+os.makedirs(r'third\fourth') ## r - show that '\' not spec symbol
+## or os.makedirs('third\\fourth') 
+
+for i in os.walk('.'): ## walk through directory's tree
+    print(i)
+
+os.removedirs(r'third\fourth') ## delete all chain
+os.chdir('..') ## go out
+print(f"current directory: {os.getcwd()}")
+os.removedirs('second') ## can't delete unempty dirs
+
+## generate lists fo dirs & files
+print(os.listdir()) ## like <ls> - item's list in current directory
+files = [f for f in os.listdir() if os.path.isfile(f)]
+dirs = [d for d in os.listdir() if os.path.isdir(d)]
+
+print(files)
+print(dirs)
+
+print(os.startfile(files[2])) ## open file in system app
+print(os.stat(files[2])) ## get file properties
+print(os.stat(files[2]).st_size) 
 
 '''
 import module_7_1.py, module_7_2.py module_7_3.py
