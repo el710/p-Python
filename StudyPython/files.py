@@ -112,5 +112,5 @@ print(os.stat(files[2])) ## get file properties
 print(os.stat(files[2]).st_size) 
 
 '''
-import module_7_1.py, module_7_2.py module_7_3.py
+import module_7_1.py, module_7_2.py module_7_3.py module_7_5.py
 '''
