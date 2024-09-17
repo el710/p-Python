@@ -141,8 +141,8 @@ input("press <Enter> to continue...")
 
 # print("\n*** Dictionary{} - paired item, indexable, changable, extansionable, multitype values")
 
-# phone_book = {'Denis': 81002223456, 'Max': 82003334567, 'Kolya': [2354, 5646]}
-# print("create dictionary -", phone_book)
+phone_book = {'Denis': 81002223456, 'Max': 82003334567, 'Kolya': [2354, 5646]}
+print(f"create dictionary - {phone_book}, {type(phone_book)}")
 # print("value type of 'Kolya' -", type(phone_book['Kolya']))
 
 # item = phone_book["Denis"]
