@@ -214,6 +214,30 @@ print(list_z)
 print(dict_z)
 
 
+## prototype map() & filter()
+
+_list = [x*2 for x in range(1, 10)]
+print(_list)
+
+_list = [x*3 for x in range(1, 20) if x % 2]
+print(_list)
+
+_list = [x*5 if x > 7 else x * 10 for x in range(1, 20) if x % 2]
+print(_list)
+
+_list = [x * y for x in range(1, 11) for y in range(1, 11)]
+print(_list)
+
+my_numbers = [3, 7, 3, 5, 9, 54, 67, 634, 5, 6, 7]
+my_set = {x for x in my_numbers}
+print(my_set)
+
+my_dic = {x: x ** 2 for x in my_numbers}
+print(my_dic)
+
+
+
+
 
 
 input("\n press <Enter> to leave...")
