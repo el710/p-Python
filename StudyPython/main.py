@@ -9,16 +9,10 @@
 
 ### https://www.reg.ru/blog/5-klassnyh-veschej-kotorye-vy-mozhete-osvoit-s-python/ - 5 вещей, которые вы можете освоить с Python
 
-### https://drive.google.com/file/d/1SUOHiI5Qicp0clk9OLIwkdySWluNbWJZ/view?usp=drive_link
-
 import os                 ## include library 'os' - function call need full path  os.system()
 from math import *        ## link all from library 'math' - function call sin()
 from time import sleep    ## link only function sleep() from library 'time' - function call sleep()
 ## from <path>.<filename> import < filename / function / *(all) >
-
-'''
-from ..Tasks import module_4_1
-'''
 
 os.system('cls')
 
@@ -128,113 +122,6 @@ print(strings_positions)
 
 input("\npress <Enter> to continue...")
 
-#########################
-
-# print("'Functions' example ")
-
-# import random
-
-# ## define
-# def simple():
-#     print("simple(): this are some functions...")
-
-# def get_data(a, b):               ## function takes arguments
-#     print(f"get_data(): get arguments a: {a} b: {b}")
-
-# def get_ini_data(a = 1, b = True):  ## function takes arguments with initialised means
-#     print(f"get_ini_data(): ini arguments a: {a} b: {b}")
-
-# def get_any_data(*args):          ## function takes any simple arguments and returns data
-#     print(f"get_any_data(): any arguments: {args}", *args)
-#     return args[0]
-
-# def get_any_named_data(**kwargs):          ## function takes any named arguments
-#     print("get_any_named_data(): any arguments: ", kwargs['a'], kwargs['b']) 
-
-# def lottery(mon, thue):
-#     tickets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-#     win1 = random.choice(tickets)
-#     tickets.remove(win1) ## to avoid coincidence
-
-#     win2 = random.choice(tickets)
-#     print(f"lottery(): {mon}, {thue}")
-#     return win1, win2
-
-def hello_func(name, age):
-    '''
-    Documentation: simple function
-    '''
-    return (f"Hello {name} at {age}")
-
-print(help(hello_func))
-## or
-print(hello_func.__doc__)
-
-def info(pos_value, *any_values, named=3.14, **any_named): ## all types of args and declaration order
-    print(pos_value)
-    print(any_values)
-    print(named)
-    print(any_named)
-    return None
-
-
-## lambda function
-## only one string
-## <name> = lambda <args>: <function>
-result = lambda x, y: x + y
-print(result(5, 7))
-
-
-### there is recursion
-def sum(n):
-    if n == 0:
-        return 0
-    else:
-        return n + sum(n - 1)
-
-print(f"Calc sum by recursive: sum(5) = {sum(5)}")
-
-# ## call
-# simple()
-
-# get_data(1, "string")
-# get_data(True, {'a', 'b', 'c'})
-
-# get_ini_data()
-# get_ini_data([1, 2]) # give one argument 'list'
-# get_ini_data(b=10) # set value by key
-# get_ini_data(*[1, False]) # give list of arguments
-# get_ini_data(*('tuple', 'allowed')) # give tuple of arguments
-# get_ini_data(**{'a': 'set', 'b': 'dictionary'}) # give dictionary of arguments
-
-# get_any_data([1, 2, 3])
-
-# fun_back = get_any_data("string", "word")
-# print("result:", fun_back)
-
-# vars = {'a': 'alfa', 'b': 'beta'}
-# get_any_named_data(**vars)
-
-# win1, win2 = lottery('mon', 'thue')
-# print(win1, win2)
-
-# print(hello_func('Ann', 23))
-
-
-# m_list = list(range(1,10))
-# print(m_list)
-
-# num = 1
-# print("%02d" % num)
-# num += 2
-
-
-'''
-from ..Tasks import module_3_2, module_3_3, module_3_4, module_3_5
-'''
-
-
-
 ################### area of variables
 
 print(globals()) ## list of global namespace
@@ -281,14 +168,15 @@ for i in range(6):
 for i in args:
     print("for by element: - ", i)
 
-'''
-from ..Tasks import module_4_2
-'''
-
 
 
 ############################################
 input("\npress <Enter> to leave...")
+
+
+'''
+from ..Tasks import module_3_2, module_3_3, module_3_4, module_3_5, module_4_2
+'''
 
 
 ## to make exe need:

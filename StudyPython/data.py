@@ -75,6 +75,9 @@ input("Press <Enter> to continue...")
 # food = ["apple", "coconut", "banana"] ## create
 # print("create list -", food)
 
+# m_list = list(range(1,10))
+# print(m_list)
+
 # elem = food[0]  ## take element by index
 # print("get element [0] -", elem, type(elem))
 
@@ -138,6 +141,8 @@ input("press <Enter> to continue...")
 # print("Tuple size - ", tuple_3.__sizeof__())
 
 # input("press <Enter> to continue...")
+
+
 
 # print("\n*** Dictionary{} - paired item, indexable, changable, extansionable, multitype values")
 

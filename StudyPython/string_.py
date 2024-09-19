@@ -60,7 +60,8 @@ print('position {0} {1} and {0}'.format('here', 'there'))
 print('position {first} {second} and {first}'.format(first = 'here', second = 'there'))
 print(f'position {"<any python code>"} ')
 
-
+num = 1
+print("%02d" % num)
 
 #input("\npress <Enter> if you dare...")
 
