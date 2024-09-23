@@ -40,8 +40,9 @@ obj = Iteratical()
 print(obj)
 
 for item in obj:
-    print(item)
     ## here processor calls __next__() automatically
+    print(item)
+    
 
 ## 'for' process:
 # try:
