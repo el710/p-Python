@@ -214,8 +214,11 @@ print(list_z)
 print(dict_z)
 
 
-## prototype map() & filter()
+"""
+    data list buildings....
+"""
 
+## prototype map() & filter()
 _list = [x*2 for x in range(1, 10)]
 print(_list)
 

@@ -92,5 +92,8 @@ class C_fibonachi():
 fib_iterator = C_fibonachi(10)
 for value in fib_iterator:
     print(f'class(): {value}')
-    
+for value in fib_iterator:
+    print(f'class(): {value}')
+
+
 

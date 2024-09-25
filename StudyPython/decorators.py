@@ -75,3 +75,41 @@ def digits(*args):
 sys.set_int_max_str_digits(100_000) ## increase the limit for string length
 result = digits(3141, 5926, 2718, 2818)
 print(result)
+
+
+print("\n...online decorator.......\n")
+
+def func_gen_dec(precision):
+    print(f'{func_gen_dec.__name__}: get precision')
+    print(f'{func_gen_dec.__name__}: make decorator')
+    def dec(func):
+        print(f'{dec.__name__}: start decoration')
+        print(f'{dec.__name__}: make wrapper')
+        def wrapper(*args, **kwargs):
+            print(f'{wrapper.__name__}: start wrapper')
+            start = time.time()
+            print(f'{wrapper.__name__}: call {func.__name__}')
+            result = func(*args, **kwargs)
+            end = time.time()
+            elapsed = round(end-start, precision)
+            print(f'{func.__name__}() work time: {elapsed} sec')
+            print(f'{wrapper.__name__}: return result')
+            return result
+        print(f'{dec.__name__}: return wrapper')
+        return wrapper
+    print(f'{func_gen_dec.__name__}: return decorator')
+    return dec
+
+@func_gen_dec(5)
+def digits(*args):
+    total = 1
+    for i in args:
+        total *= i ** 5000
+    return len(str(total))
+
+sys.set_int_max_str_digits(100000)
+
+# time_track = func_gen_dec(5)
+# digits = time_track(digits)
+result = digits(3141, 5926, 2718, 2818)
+print(result)
