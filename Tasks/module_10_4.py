@@ -29,8 +29,9 @@ class Table():
     def get_guest(self):
         return self.guest
 
-class Guest():
+class Guest(Thread):
     def __init__(self, name):
+        super().__init__()
         self.name = name
     
     def __str__(self):
@@ -56,7 +57,7 @@ class Cafe():
             for table in self.tables:
                 if table.put_guest(guest):
                   print(f'{guest} has got table N {table.get_number()}')
-                  thread = Thread(target=Guest.run, args=(BUSY_MIN, BUSY_MAX, ))
+                  thread = Guest(BUSY_MIN, BUSY_MAX)
                   thread.start()
                   self.threads[guest] = thread
 
@@ -81,7 +82,7 @@ class Cafe():
                     guest = self.queue.get()
                     table.put_guest(guest)
                     print(f'{guest} has out from line and got table N {table.get_number()}')
-                    thread = Thread(target=Guest.run, args=(BUSY_MIN, BUSY_MAX, ))
+                    thread = Guest(BUSY_MIN, BUSY_MAX)
                     thread.start()
                     self.threads[guest] = thread
             

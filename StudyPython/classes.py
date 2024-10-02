@@ -2,7 +2,7 @@
 # OOP: inheritance - class Human -> class Men(Human)
 #      incapsulation - public, protected, private data
 #      polimorphizm -  one interface - for multitype data: print(123), print('abc'), ...
-#      abstarcation - 
+#      abstraction - 
 # ###
 
 
