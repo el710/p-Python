@@ -4,7 +4,7 @@ pip install openpyxl
 import requests
 import pandas
 import pprint
-
+from pandas import read_excel
 import os
 
 
@@ -35,5 +35,7 @@ df = pandas.DataFrame(
 df.to_excel('sheet.xlsx', sheet_name="sheet 1")
 
 
+new_df = read_excel('sheet.xlsx', sheet_name="sheet 1")
+pprint.pprint(new_df)
 
 
