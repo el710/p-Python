@@ -1,9 +1,16 @@
 """
 pip install requests
 """
+import random
+import time
+from threading import Thread
+import queue
+from queue import Empty
+from typing import Mapping
 
 import requests
 from datetime import datetime
+import os
 
 print('...simple line program...\n')
 
@@ -23,6 +30,9 @@ print(res)
 print(f'time: {time_end - time_start}')
 
 print('\n...upgrade with threads...\n')
+print(f'system cpu number = {os.cpu_count()}')
+
+
 
 from threading import Thread
 
@@ -147,7 +157,7 @@ def sync_task():
     global x
     for _ in range(10_000_000):
         lock.acquire() ## take lock
-        x = x + 1 ## non atomic operation can cycling threads
+        x = x + 1 ## non atomic operation can cycle threads
         lock.release()
     """
        or
@@ -314,14 +324,163 @@ t2.start()
 t1.join()
 t2.join()
 
-print('\n--- sys.excepthook...\n')
+# print('\n--- sys.excepthook...\n')
 
-def exc_sys_hook(args, a, b): ## 3 args
-    print(f'My handle...<{args}>, <{b}>, <{a}>')
+# def exc_sys_hook(args, a, b): ## 3 args
+#     print(f'My handle...<{args}>, <{b}>, <{a}>')
 
-sys.excepthook = exc_sys_hook
+# sys.excepthook = exc_sys_hook
+# raise Exception
 
-raise Exception
+# import random
+# import time
+# from threading import Thread
+# import queue
+# from queue import Empty
+# from typing import Mapping
+
+
+class Bulka(Thread):
+    def __init__(self, queue, count) -> None:
+        self.queue = queue
+        self.count = count
+        super().__init__()
+
+    def run(self):
+        while self.count:
+            time.sleep(random.randint(1, 5))
+            if random.random() > 0.9:
+                self.queue.put('Bulka burned')
+            else:
+                self.queue.put('Bulka ready')
+                self.count -= 1
+
+class Kotleta(Thread):
+    def __init__(self, queue, count) -> None:
+        self.queue = queue
+        self.count = count
+        super().__init__()
+    
+    def run(self):
+        while self.count:
+            print(f'queue size: {self.queue.qsize()}')
+            try:
+                bulka = self.queue.get(timeout=1)
+                if bulka == 'Bulka ready':
+                    time.sleep(random.randint(1, 5))
+                    self.count -= 1
+                print(f'bulka for cooking left: {self.count}')              
+            except Empty:
+                print(f'still wait')
+
+
+queue = queue.Queue(maxsize=10)
+
+t1 = Bulka(queue, 10)
+t2 = Kotleta(queue, 10)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+"""
+ sem = Semaphore(2) - can catch 2 threads at the same timee
+"""
+from threading import Semaphore
+sem = Semaphore(value=1)
+sem.asquire()
+...
+sem.release()
+
+
+
+# from collections.abc import Callable
+# from typing import Any, Iterable, Mapping
+# import requests
+# import pprint
+
+# from threading import Thread, Event
+# from queue import Queue
+
+
+# RANDOM_GENRE_API_URL = 'https://binaryjazz.us/wp-json/genrenator/v1/genre'
+# GENIUS_API_URL = 'https://api.genius.com/search'
+# ACCESS_TOKEN = 'lEjCXeZdeAR5nr3us9OFIsptgY60wUEMt1MivGYFxC_lwP9YrSFJw_plBrM6aoH1'
+# GENIUS_URL = 'https://genius.com'
+
+# ##                            [  param 1  ]&[ param 2]&[  param 3   ]
+# ## search: www.some.com/search?q=some_query&type=music&genre=classic
+
+# ## get random ganres
+# genre = requests.get(RANDOM_GENRE_API_URL).json()
+# # print(f'Ganre: {genre}\n')
+
+# ## get list songs of this 'genre'
+# data = requests.get(GENIUS_API_URL, params={'access_token': ACCESS_TOKEN, 'q': genre})
+# data = data.json()
+# # print('Songs data of this genre: \n')
+# # pprint.pprint(data) 
+
+# song_adr = data['response']['hits'][0]['result']['api_path']
+# # print(f'\nPath and ID song: {song_adr}\n')
+# # print(f'Try to get song: {GENIUS_URL}{song_adr}/apple_music_player')
+
+
+# print(f'\n---Try threads classes....\n')
+
+# all_songs = []
+# class GetGanre(Thread):
+#     def __init__(self, queue, stop_event) -> None:
+#         self.queue = queue
+#         self.stop_event = stop_event
+#         super().__init__()
+    
+#     def run(self):
+#         while not self.stop_event.is_set():
+#             genre = requests.get(RANDOM_GENRE_API_URL).json()
+#             self.queue.put(genre)
+
+# class Genius(Thread):
+#     def __init__(self, queue) -> None:
+#         self.queue = queue
+#         super().__init__()
+    
+#     def run(self) -> None:
+#         genre = self.queue.get()
+#         data = requests.get(GENIUS_API_URL, params={'access_token': ACCESS_TOKEN, 'q': genre}).json()
+#         try:
+#             song_adr = GENIUS_URL + data['response']['hits'][0]['result']['api_path'] + '/apple_music_player'
+#             all_songs.append({'genre': genre, 'song': song_adr})
+#             print(f'Get song: {song_adr}, genre: {genre}')
+#         except IndexError as exc: ## case when data = None
+#             self.run()
+        
+
+# queue = Queue()
+# stop_event = Event()
+
+# get_threads = []
+# gen_threads = []
+# for _ in range(10):
+#     thread = GetGanre(queue, stop_event)
+#     get_threads.append(thread)
+#     thread.start()
+#     thread = Genius(queue)
+#     gen_threads.append(thread)
+#     thread.start()
+
+# for t in gen_threads:
+#     t.join()
+# stop_event.set()  ## stop GetGenre() threads...
+# for t in get_threads:
+#     t.join()
+
+# print(f'Queue: {queue.qsize()} genres left')
+# print(f'Songs: {len(all_songs)}')
+# print('\n formated output...\n')
+# pprint.pprint(all_songs)
 
 
 """

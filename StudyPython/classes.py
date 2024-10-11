@@ -5,6 +5,16 @@
 #      abstraction - 
 # ###
 
+class Parent1():
+    pass
+class Parent2():
+    pass
+    
+class Example(Parent1, Parent2):
+    def __init__(self) -> None:
+        super().__init__()   ### Here 'super' is only Parent1.__init__() not Parent2
+
+
 
 class Human:
     ## allways heritable attributes

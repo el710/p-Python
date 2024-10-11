@@ -1,26 +1,33 @@
-from datetime import datetime
-from multiprocessing import Pool
+"""
+pip install openpyxl
+"""
+import requests
+import pandas
+import pprint
 
-file_list = ['file 1.txt', 'file 2.txt', 'file 3.txt', 'file 4.txt']
+import os
 
-def read_info(name):
-    all_data = []
-    with open(name, 'r', encoding='utf-8') as file:
-        for line in file:
-            if len(line) > 0:
-                all_data.append(line)
+os.system('git commit -am "new stage"')
+os.system('git push')
 
-if __name__ == '__main__':
-    ### one process
-    start = datetime.now()
-    for name in file_list:
-        read_info(name)
-    end = datetime.now()
-    print(f'one process worktime: {end - start}')
+print('Request: get()...\n')
+req = requests.get('https://api.github.com/events')
+print(f'Request URL: {req.url}')
+print(f'status: {req.status_code}')
+print(f'apparent_encoding: {req.apparent_encoding}')
 
-    ### multyprocess
-    with Pool(processes=4) as pool:
-        start = datetime.now()
-        pool.map(read_info, file_list)    
-    end = datetime.now()
-    print(f'multyprocess worktime: {end - start}')
+data = req.json()
+pprint.pprint(f'{pandas.Series(data[0])}')
+
+df = pandas.DataFrame(
+    {
+        "login": [x['actor']['login'] for x in data],
+        "repo_name": (x['repo']['name'] for x in data),
+        "type": (x['type'] for x in data)
+    }
+)
+df.to_excel('sheet.xlsx', sheet_name="sheet 1")
+
+
+
+
