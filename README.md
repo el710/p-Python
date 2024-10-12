@@ -66,3 +66,33 @@ https://matplotlib.org/stable/users/explain/quick_start.html
 
 pillow - обработать изображение, например, изменить его размер, применить эффекты и сохранить в другой формат.
 https://pillow.readthedocs.io/en/stable/
+
+
+## Project envirounment:
+1. create project directory
+2. make virtual envirounment (It keeps project's python interpretator (/scripts) & only used packages)
+       
+       Use package:
+            for vscode we need: > pip install pipenv (vs code may offer to create virtual envirounment...)
+            > pipenv shell
+            ctrl + shift + p - python select interpreter
+            > type python - check set interpreter
+
+      or
+      in new project directory
+      > python -m venv <venv directory>, venv directory should named 'venv' - common rule
+
+3. Activate project's python interpreter
+   venv/Scripts/activate.bat
+   if it doesn't work
+      - need to restart terminal
+      - choose interpretator handly:
+   ctrl + shift + p - python select interpreter
+   
+4. Keep file of used packages with pip - 'requirement.txt'
+   pip freeze > <filename> 
+   To restore envirounment: pip install -r <filename>
+5. make repository
+   git init
+6. make file for untracked dirs/files
+   .gitignore <- /venv, /scripts e.t.c
