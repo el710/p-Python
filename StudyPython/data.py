@@ -1,7 +1,9 @@
 
 import os
 os.system('cls')
-
+"""
+Data types: <module>, <class>, <list>, <dict>, ... <float>, <int>, <str>, ...
+"""
 print('Here are examples with print() type() & data types')
 
 # variables in python are class objects

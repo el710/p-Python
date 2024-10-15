@@ -215,7 +215,7 @@ class Multiplyer:
     def __init__(self, m) -> None:
         self.m = m
     
-    def __call__(self, x) -> Any: ## object of this clsss can call like function
+    def __call__(self, x): ## object of this clsss can call like function
         return x * self.m
 
 
@@ -227,7 +227,7 @@ list_x = list(map(multy, numbers))
 print(list_x)
 
 
-
+print(multy)
 
 
 
