@@ -9,6 +9,7 @@ ability of object to give information about itself
 - type()
 - hasattr()
 - getattr()
+- setattr()
 - callable()
 - isinstance()
 
@@ -72,8 +73,9 @@ except Exception as exc:
 
 
 for attr_name in dir(requests):
-    attr = getattr(requests, attr_name)
+    attr = getattr(requests, attr_name, )
     print(f"Attr: {attr_name} - {type(attr)} ")
+    
 
 print(f"\n check callable() \n")
 print(callable(some_variable))
@@ -92,6 +94,7 @@ print(inspect.ismodule(requests))
 print(inspect.isclass(requests))
 print(inspect.isfunction(requests))
 print(inspect.isbuiltin(requests))
+
 
 some_module = inspect.getmodule(some_function)
 print(type(some_module), some_module)

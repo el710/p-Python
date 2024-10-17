@@ -3,6 +3,7 @@ pip install requests
 """
 import random
 import time
+import threading
 from threading import Thread
 import queue
 from queue import Empty
@@ -31,10 +32,8 @@ print(f'time: {time_end - time_start}')
 
 print('\n...upgrade with threads...\n')
 print(f'system cpu number = {os.cpu_count()}')
+input(f'threads now: {threading.enumerate()} - press <Enter>')
 
-
-
-from threading import Thread
 
 t_res = []
 urls = (THE_URL, )
@@ -47,7 +46,7 @@ def func(url):
 ## make threads
 thr_first  = Thread(target=func, args=urls)
 thr_second = Thread(target=func, args=urls)
-thr_third  = Thread(target=func, args=urls)
+thr_third  = Thread(target=func, args=urls, daemon=True) ## this thread will closed with main process
 
 time_start = datetime.now()
 
@@ -59,7 +58,7 @@ thr_third.start()
 # wait for ends of threads
 thr_first.join()
 thr_second.join()
-thr_third.join()
+## thr_third.join() daemon doesn't need join()
 
 time_end = datetime.now()
 
@@ -148,10 +147,15 @@ for _ in range(10):
     - a = 10
 """
 
-from threading import Lock
+from threading import Lock, RLock
 
 x = 0
 lock = Lock()
+
+"""
+lock = RLock()
+RLock - threadown lock - release lock can only that who close 
+"""
 
 def sync_task():
     global x

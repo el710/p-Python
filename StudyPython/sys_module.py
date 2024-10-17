@@ -20,6 +20,8 @@ print(f"\nPath to find modules: {sys.path}")
 print(f"\nDictionary of used modules: {sys.modules}")
 
 
+sys.exit()
+
 """
 __builtins__ - keeps inner objects of python
 """
