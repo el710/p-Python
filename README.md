@@ -70,6 +70,7 @@ https://pillow.readthedocs.io/en/stable/
 
 ## Project envirounment:
 1. create project directory
+   
 2. make virtual envirounment (It keeps project's python interpretator (/scripts) & only used packages)
        
        Use package:
@@ -94,14 +95,16 @@ https://pillow.readthedocs.io/en/stable/
    To restore envirounment: pip install -r <filename>
 
 5. make unit-test directory
-      - make TestCases/tests/TestSuites/runner
+      - make TestCases | tests | TestSuites | runner
 
 6. make package directories
       - make __init__.py file
       - add 'import <package dir name>'
 
-7. make repository
+7. make logging system
+   
+8. make repository
    git init
    
-8. make file for untracked dirs/files
+9.  make file for untracked dirs/files
    .gitignore <- /venv, /scripts e.t.c

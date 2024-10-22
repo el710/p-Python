@@ -1,0 +1,18 @@
+
+ 2024-10-22 18:29:06,235 | tests_12_4 | WARNING | Wrong data type: name: 456, speed: 7
+Traceback (most recent call last):
+  File "d:\EL710\p-Python\Tasks\tests_12_4.py", line 23, in test_run
+    runner = rwe.Runner(t_name, t_speed)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\EL710\p-Python\Tasks\rt_with_exceptions.py", line 6, in __init__
+    raise TypeError(f'Имя может быть только строкой, передано {type(name).__name__}')
+TypeError: Имя может быть только строкой, передано int
+
+ 2024-10-22 18:29:06,263 | tests_12_4 | WARNING | Wrong value: name: Axe, speed: -5
+Traceback (most recent call last):
+  File "d:\EL710\p-Python\Tasks\tests_12_4.py", line 10, in test_walk
+    runner = rwe.Runner(t_name, t_speed)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\EL710\p-Python\Tasks\rt_with_exceptions.py", line 11, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -5
