@@ -8,10 +8,10 @@ class RunnerTest(unittest.TestCase):
         t_name = "Axe"
         try:
             runner = rwe.Runner(t_name, t_speed)
+            self.assertIsNotNone(runner)            
             runner.walk()
             logging.info(f"test walk() succesful: {t_name} - {t_speed} - {runner.distance}")
             self.assertNotEqual(runner.distance, 0)
-            self.assertIsNotNone(runner)            
         except ValueError:
             logging.warning(f"Wrong value: name: {t_name}, speed: {t_speed}", exc_info=True)
 
@@ -21,10 +21,10 @@ class RunnerTest(unittest.TestCase):
         t_name = 456        
         try:
             runner = rwe.Runner(t_name, t_speed)
+            self.assertIsNotNone(runner)
             runner.run()
             logging.info(f"test run() successful: {t_name} - {t_speed} - {runner.distance}")
             self.assertNotEqual(runner.distance, 0)
-            self.assertIsNotNone(runner)
         except TypeError:
             logging.warning(f"Wrong data type: name: {t_name}, speed: {t_speed}", exc_info=True)
         
