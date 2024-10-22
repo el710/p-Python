@@ -1,5 +1,6 @@
 """
 Testing...
+import test_12*.py
 """
 
 """
@@ -43,15 +44,16 @@ print("\nUnit-test style...\n")
 embedded framework <unittest> build tests in dev environment
 """
 import unittest 
+import random
 
 """
-TestCase - class, which test-methods will called by main() function of <unitest>
-All TestCase classes(objects) make out 'TestSuite' - set of TestCases
+TestCase - class, the one whose test-methods will called by main() function of <unitest>
+All TestCase descendants grouped in 'TestSuite' - set of TestCases
 """
 ## make new TestCase-type class with set of tests...
 class CalcTest(unittest.TestCase):
     """
-        setUpClass() will called once before all test methods - like global initialization
+        setUpClass() will called once, before all test methods - like global initialization
         with decorator <@classmethod>
     """
     @classmethod
@@ -63,13 +65,13 @@ class CalcTest(unittest.TestCase):
     """
     def setUp(self) -> None:
         ##super().setUp()
-        print("setup() run test N...")
+        print("setUp() run test N...")
     
     """
         tearDown() will called after each test - epilog
     """
     def tearDown(self):
-        print('tearDown(): after test start tearDown()')
+        print('tearDown(): N  test is over')
 
     @classmethod
     def tearDownClass(cls):
@@ -90,15 +92,27 @@ class CalcTest(unittest.TestCase):
 
     def test_assertions(self):
         self.assertNotEqual(7, 5) ## are they not equal :)
-        self.assertAlmostEqual(3.21, 3.22) ## this for real variables means 7 digits after point
-        self.assertTrue(False)
+        self.assertAlmostEqual(3.22, 3.22) ## this for real variables means 7 digits after point
+        self.assertTrue(True)
         self.assertIs('me', 'me')
         self.assertIsNone(None)
         self.assertIn('b', 'abc')
-        self.assertRaises() ## was there any exception
-        self.assertWarns() ## was there any warning
+        self.assertRaises(expected_exception=TypeError) ## was there any exception
+        self.assertWarns(expected_warning=Warning) ## was there any warning
         self.assertLess(5, 7)
         self.assertLessEqual(5, 5)
+    
+    """
+        methods to skip some tests temporary...
+    """
+    @unittest.skip("becouse it's double test...")
+    def test_double(self):
+        pass
+
+    @unittest.skipIf(random.randint(0, 2), "becouse only for odd testings...")
+    def test_odd(self):
+        pass
+
 
 
 if __name__ == "__main__":

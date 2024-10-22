@@ -14,6 +14,7 @@ pandas==2.2.3
 Pillow==9.3.0
 platformdirs==4.3.6
 pycparser==2.22
+pygame==2.5.2
 pyglet==2.0.dev23
 pymunk==6.4.0
 python-dateutil==2.9.0.post0

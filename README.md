@@ -92,7 +92,16 @@ https://pillow.readthedocs.io/en/stable/
 4. Keep file of used packages with pip - 'requirement.txt'
    pip freeze > <filename> 
    To restore envirounment: pip install -r <filename>
-5. make repository
+
+5. make unit-test directory
+      - make TestCases/tests/TestSuites/runner
+
+6. make package directories
+      - make __init__.py file
+      - add 'import <package dir name>'
+
+7. make repository
    git init
-6. make file for untracked dirs/files
+   
+8. make file for untracked dirs/files
    .gitignore <- /venv, /scripts e.t.c
