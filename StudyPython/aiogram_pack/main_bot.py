@@ -5,9 +5,9 @@ pip install aiogram==2.25.1
 from aiogram import Bot, Dispatcher, executor ##, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
  
-from id_bot import Teltoken
+from id_bot import tel_token, bot_name
 
-bot = Bot(token=Teltoken)
+bot = Bot(token=tel_token)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
@@ -24,6 +24,10 @@ async def spec_message(message):
     for key, value in message:
         print(f"Call: {key}: {value}")
     print()
+    """
+        write to chat
+    """
+    await message.answer(f"{bot_name}: '{message.text}' is key-word message")
 
 """
     Handler for commands... </comm>
@@ -32,7 +36,8 @@ async def spec_message(message):
 async def get_command(message):
     for key, value in message:
         print(f"Command: {key}: {value}")
-    print()        
+    print()
+    await message.answer(f"{bot_name}: Hello there! Nice to see you")
    
 """
     Last, common handlers....
@@ -45,6 +50,7 @@ async def all_message(message):
     for key, value in message:
         print(f"Call: {key}: {value}")
     print()
+    await message.answer(f"{bot_name}: you wrote - {message.text.upper()}")
 
 
 if __name__ == "__main__":

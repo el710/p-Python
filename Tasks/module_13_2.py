@@ -22,7 +22,7 @@ async def start(message):
 
 @dispatcher.message_handler()
 async def all_messages(message):
-    print(f"{bot_name}: Type '/start' for begining conversation...")
+    print(f"{bot_name}: Type '/start' for begining of conversation...")
 
 
 ## start dispatcher
