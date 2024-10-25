@@ -44,8 +44,8 @@ setup test project:
 
 https://www.PyPi.org - site with packets for python with <pip> function:
 - pip search <key> - find packet on PyPi.org
-- pip install <library><==v.v.v>- install packet with version v.v.v
-- pip install -upgrade <><==v.v.v> - ... to version
+- pip install <package>==<v.v.v>- install package with version v.v.v
+- pip install -upgrade <package><==v.v.v> - ... to version
 - pip uninstall <>  - ...
 - pip freeze - show list of installed packets
 - pip freeze > <filename> - save to file
@@ -73,14 +73,14 @@ https://pillow.readthedocs.io/en/stable/
    
 2. make virtual envirounment (It keeps project's python interpretator (/scripts) & only used packages)
        
-       Use package:
+       !!!Use package:
             for vscode we need: > pip install pipenv (vs code may offer to create virtual envirounment...)
             > pipenv shell
             ctrl + shift + p - python select interpreter
             > type python - check set interpreter
 
-      or
-      in new project directory
+      
+      This works wrong in VCode:
       > python -m venv <venv directory>, venv directory should named 'venv' - common rule
 
 3. Activate project's python interpreter
