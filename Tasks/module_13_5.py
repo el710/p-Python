@@ -1,10 +1,10 @@
-from aiogram import Bot, Dispatecher, executor
+from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
-from aiogram.types import ReplayKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 import asyncio
 from id_tm_bot import api_token
@@ -18,47 +18,51 @@ class UserState(StatesGroup):
     weight = State()
 
 butt_calc_text = "Calculate"
+butt_info_text = "Information"
 
-keyboard = ReplayKeyboardMarkup()
+keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
 butt_calc = KeyboardButton(text=butt_calc_text)
-butt_info = 
+butt_info = KeyboardButton(text=butt_info_text)
+keyboard.add(butt_calc)
+keyboard.insert(butt_info)
+
 
 bot = Bot(api_token)
-dispatcher = Dispatecher(bot, storage=MemoryStoreage())
+dispatcher = Dispatcher(bot, storage=MemoryStorage())
 
-@dispatcher.message_handler(command=['start'])
+@dispatcher.message_handler(commands=['start'])
 async def start(message):
-    await message.answer("Hello there! Bot I am, to help for health of your's")
+    await message.answer("Hello there! Bot I am, to help for health of your's", reply_markup=keyboard)
 
-@dispatcher.message_handler(text = "Calculate calories")
+@dispatcher.message_handler(text=butt_calc_text)
 async def set_age(message):
     await message.answer(f"Write me your age: ")
     await UserState.age.set()
 
-@dispatcher.message_handler(state = UserState.age)
+@dispatcher.message_handler(state=UserState.age)
 async def set_growth(message, state):
-    await UserState.age.update_data("age" = message.text)
+    await state.update_data(age=message.text)
     await message.answer(f"Write me your growth: ")
     await UserState.growth.set()
 
- @dispatcher.message_handler(state = UserState.growth)
- async def set_weight(massage, state):
-    await state.update_data("growth" = message.text)
+@dispatcher.message_handler(state = UserState.growth)
+async def set_weight(message, state):
+    await state.update_data(growth=message.text)
     await message.answer(f"Write me weight: ")
     await UserState.weight.set()
 
 @dispatcher.message_handler(state = UserState.weight)
 async def send_calories(message, state):
-    await state.update_data("weight" = message.text)
-    data = state.get_data()
+    await state.update_data(weight=message.text)
+    data = await state.get_data()
 
     def f_Miff_Jeor(data):
-        age = data["age"]
-        growth = data["growth"]
-        weight = data["weight"]
+        age = float(data["age"])
+        growth = float(data["growth"])
+        weight = float(data["weight"])
 
-        man = 1
-        woman = 2
+        man = 10 * weight + 6.25 * growth - 5 * age + 5
+        woman = 10 * weight + 6.25 * growth - 5 * age - 161
 
         return man, woman
  
@@ -70,10 +74,9 @@ async def send_calories(message, state):
 @dispatcher.message_handler()
 async def all_messages(message):
     await message.answer("write /start to begin...")
-    await message.answer("write 'Calories' to check up norma...")
 
 
-If __name__ = "__main__":
-    executor.start_polling(dispatecher, skip_updates=True)
+if __name__ == "__main__":
+    executor.start_polling(dispatcher, skip_updates=True)
 
 

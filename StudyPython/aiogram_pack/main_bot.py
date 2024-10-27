@@ -15,6 +15,11 @@ import asyncio
 from id_bot import tel_token, bot_name
 import os
 
+"""
+    import module_13
+"""
+
+
 os.system('cls')
 
 """
@@ -44,8 +49,6 @@ async def fsm_handler(message, state):
     data = await state.get_data()
     await message.answer(f"We'll send the package to {data['adr']}")
     await state.finish()
-
-
 
 """
     If one handler cought message then other handlers won't work, so
@@ -91,3 +94,31 @@ async def all_message(message):
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
+
+
+"""
+from aiogram.types import ReplayKeyboardMarkup, KeyboardButton
+
+name_button_1 = "Information"
+
+bot = Bot(api_token)
+dp = Dispatecher(bot, storage=MemoryStorage())
+
+kb = ReplayKeyboardMarkup()
+button_1 = KeyboardButton(text=name_button_1)
+button_2 = KeyboardButton(text="Begin")
+kb.add(button_1)
+
+    else: kb.row(<list of buttons>)
+          kb.insert() - add button to the end of row or make new row...
+
+kb.add(button_2)
+
+@dp.message_handler(commands=['start'])
+async def start(message):
+    await message.answer("Hello", replay_markup = kb)
+
+@dp.message_handler(text=name_button_1)
+async def inform(message):
+    await message.answer(f"This is {bot_name} bot")
+"""
