@@ -1,14 +1,50 @@
 """
 pip install aiogram==2.25.1
 """
-
-from aiogram import Bot, Dispatcher, executor ##, types
+## basic...
+from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
- 
-from id_bot import tel_token, bot_name
 
+## for get <state>... to get, keep & use data of users
+from aiogram import types
+from aiogram.dispatcher import FSMContext
+from aiogram.dispatcher.filters.state import State, StatesGroup
+
+import asyncio
+
+from id_bot import tel_token, bot_name
+import os
+
+os.system('cls')
+
+"""
+    make bot & dispetcher
+"""
 bot = Bot(token=tel_token)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+class UserState(StatesGroup):
+    address = State()
+
+@dp.message_handler(text="Order")
+async def buy(message):
+    await message.answer("Send us your address, pleeeese...")
+    """
+        start catch next message as <address>...
+    """
+    await UserState.address.set()
+
+"""
+    handler for state...
+"""
+@dp.message_handler(state=UserState.address)
+async def fsm_handler(message, state):
+    await state.update_data(adr = message.text) ## save as dictionary key = value
+    ## get data back from dict
+    data = await state.get_data()
+    await message.answer(f"We'll send the package to {data['adr']}")
+    await state.finish()
+
 
 
 """
