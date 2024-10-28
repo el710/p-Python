@@ -10,6 +10,12 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
+## outline menu buttons
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+
+## inline menu buttons
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
 import asyncio
 
 from id_bot import tel_token, bot_name
@@ -28,10 +34,49 @@ os.system('cls')
 bot = Bot(token=tel_token)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
+"""
+    make outlay buttons
+"""
+name_button_1 = "Information"
+button_1 = KeyboardButton(text=name_button_1)
+button_2 = KeyboardButton(text="Order")
+
+## make outlay keyboard
+kb = ReplyKeyboardMarkup(resize_keyboard=True) ## resize automatically button for sreen size
+kb.add(button_1)
+"""
+    else: kb.row(<list of buttons>)
+          kb.insert() - add button to the end of row or make new row...
+"""
+kb.insert(button_2)
+
+outline_kb_block = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="Inform")], ## one list - one block of buttons
+        [
+            KeyboardButton(text="shop"),
+            KeyboardButton(text="donate")
+        ]
+    ], resize_keyboard=True
+)
+
+
+"""
+    make inline button-menu
+"""
+butt_info_name = "Inform"
+butt_info = InlineKeyboardButton(text=butt_info_name, callback_data="id_info") ## id_info hidden id-key of button
+
+inline_kb = InlineKeyboardMarkup()
+inline_kb.add(butt_info)
+
+
+
+
 class UserState(StatesGroup):
     address = State()
 
-@dp.message_handler(text="Order")
+@dp.message_handler(text="Order") ## it will also catch text & name_button_1
 async def buy(message):
     await message.answer("Send us your address, pleeeese...")
     """
@@ -76,8 +121,31 @@ async def get_command(message):
     for key, value in message:
         print(f"Command: {key}: {value}")
     print()
-    await message.answer(f"{bot_name}: Hello there! Nice to see you")
-   
+    await message.answer(f"{bot_name}: Hello there! Nice to see you", reply_markup=inline_kb)
+
+"""
+    for inline button-menu handler
+"""
+@dp.callback_query_handler(text="id_info")
+async def inline_info(call):
+    await call.message.answer(f"This is {bot_name} bot")
+    await call.answer() ## - release button
+
+@dp.message_handler(commands='block')
+async def start_block(message):
+    await message.answer(text=":", reply_markup=outline_kb_block) ## text can't be empty
+
+"""
+    use keyword to open outlay menu
+"""
+@dp.message_handler(commands=['outmenu'])
+async def start_outmenu(message):
+    await message.answer("Here is message mackets", reply_markup = kb) ## show keyboard with answer
+
+@dp.message_handler(text=name_button_1)
+async def inform(message):
+    await message.answer(f"This is outline button of {bot_name} bot")
+
 """
     Last, common handlers....
 """
@@ -90,35 +158,11 @@ async def all_message(message):
         print(f"Call: {key}: {value}")
     print()
     await message.answer(f"{bot_name}: you wrote - {message.text.upper()}")
+    await message.answer(f"{bot_name}: try /outmenu to use outline menu...")
+    await message.answer(f"{bot_name}: try /start to use inline menu...")
+    await message.answer(f"{bot_name}: try /block to use inline menu...")
 
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
 
-
-"""
-from aiogram.types import ReplayKeyboardMarkup, KeyboardButton
-
-name_button_1 = "Information"
-
-bot = Bot(api_token)
-dp = Dispatecher(bot, storage=MemoryStorage())
-
-kb = ReplayKeyboardMarkup()
-button_1 = KeyboardButton(text=name_button_1)
-button_2 = KeyboardButton(text="Begin")
-kb.add(button_1)
-
-    else: kb.row(<list of buttons>)
-          kb.insert() - add button to the end of row or make new row...
-
-kb.add(button_2)
-
-@dp.message_handler(commands=['start'])
-async def start(message):
-    await message.answer("Hello", replay_markup = kb)
-
-@dp.message_handler(text=name_button_1)
-async def inform(message):
-    await message.answer(f"This is {bot_name} bot")
-"""
