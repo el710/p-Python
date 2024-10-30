@@ -30,6 +30,7 @@ keyboard.insert(butt_info)
 bot = Bot(api_token)
 dispatcher = Dispatcher(bot, storage=MemoryStorage())
 
+
 @dispatcher.message_handler(commands=['start'])
 async def start(message):
     await message.answer("Hello there! Bot I am, to help for health of your's", reply_markup=keyboard)
@@ -43,6 +44,7 @@ async def set_age(message):
 async def set_growth(message, state):
     await state.update_data(age=message.text)
     await message.answer(f"Write me your growth: ")
+
     await UserState.growth.set()
 
 @dispatcher.message_handler(state = UserState.growth)
@@ -74,6 +76,7 @@ async def send_calories(message, state):
 @dispatcher.message_handler()
 async def all_messages(message):
     await message.answer("write /start to begin...")
+    
 
 
 if __name__ == "__main__":
