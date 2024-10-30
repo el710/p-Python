@@ -25,3 +25,17 @@ cell_kb = InlineKeyboardMarkup(
         [InlineKeyboardButton(text="Back", callback_data="buy_back")]
     ]
 )
+
+"""
+PANEL OF AMINISTRATOR...
+"""
+admin_panel = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [InlineKeyboardButton(text="Users", callback_data="users")],
+        [InlineKeyboardButton(text="Statistic", callback_data="stat")],
+        [
+            [InlineKeyboardButton(text="Blocking", callback_data="block")],
+            [InlineKeyboardButton(text="Unblock", callback_data="unblock")]
+        ]
+    ]
+)

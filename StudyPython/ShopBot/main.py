@@ -13,6 +13,8 @@ import os
 from config import *
 from keyboards import *
 import texts
+from admin import *
+from db import *
 
 import logging
 
