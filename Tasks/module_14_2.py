@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect("not_telegram.dp")
+connection = sqlite3.connect("not_telegram2.dp")
 cursor = connection.cursor()
 
 cursor.execute("""Create Table If Not Exists Users(id integer primary key, username text not null, email text not null, age integer, balance integer not null)""")
