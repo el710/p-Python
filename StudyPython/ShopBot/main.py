@@ -28,11 +28,20 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 """
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer(texts.start, reply_markup=start_kb)
+    await message.answer(f"Hi, {message.from_user.username}! " + texts.start, reply_markup=start_kb)
+
+"""
+    Send media... picture / file / clip...
+"""
+## message.answer_photo
+## message.answer_video
+## message.answer_file
 
 @dp.message_handler(text="About")
 async def info(message):
-    await message.answer(texts.about, reply_markup=start_kb)
+    with open("daily_space.jpg", "rb") as image:
+        await message.answer_photo(image, texts.about, reply_markup=start_kb)
+
 
 @dp.message_handler(text="Prices")
 async def prices(message):
@@ -60,6 +69,11 @@ async def buy_xl(call):
 @dp.callback_query_handler(text="other")
 async def buy_oth(call):
     await call.message.answer(texts.other, reply_markup = cell_kb)
+    await call.answer()
+
+@dp.callback_query_handler(text="buy_back")
+async def buy_back(call):
+    await call.message.answer(texts.question, reply_markup=catalog_kb)
     await call.answer()
 
 

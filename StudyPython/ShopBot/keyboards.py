@@ -21,6 +21,7 @@ catalog_kb = InlineKeyboardMarkup(
 
 cell_kb = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text="Buy", url="https://google.com")]
+        [InlineKeyboardButton(text="Buy", url="https://google.com")],
+        [InlineKeyboardButton(text="Back", callback_data="buy_back")]
     ]
 )
