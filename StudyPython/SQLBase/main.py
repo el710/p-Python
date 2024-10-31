@@ -19,13 +19,15 @@ cursor = connection.cursor()
 """
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS Users(
-               id INTEGER PRIMARY KEY,
+               id INTEGER PRIMARY KEY, 
                username TEXT NOT NULL,
                email TEXT NOT NULL,
                age INTEGER
                )
 ''')
-
+"""
+    if use 'Int' instead 'Integer' in <Create> that will make null meanings in <id> fields
+"""
 """
     make an index...
 """
