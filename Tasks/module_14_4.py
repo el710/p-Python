@@ -142,7 +142,7 @@ async def all_messages(message):
 
 
 if __name__ == '__main__':
-    initiate_db()
+    initiate_db("not_telegram.dp")
     
     connection = sqlite3.connect("not_telegram.dp")
     cursor = connection.cursor()

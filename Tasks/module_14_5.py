@@ -82,7 +82,7 @@ async def starter(message):
 @dp.callback_query_handler(text=butt_form_id)
 async def get_formulas(call):
     await call.message.answer("Woman() = 10 * weight + 6.25 * growth - 5 * age - 161")
-    await call.message.answer("Man() = 10 * weight + 6.25 * growth - 5 * age + 5")
+    await call.message.answer("Man() = 10 * weight + 6.25 * growth - 5 * age + 5", reply_markup=out_kb)
     await call.answer()
 
 @dp.callback_query_handler(text=butt_calor_id)
@@ -111,6 +111,7 @@ async def informer(message):
 async def get_buying_list(message):
     db_data = get_all_products()
     for idx, item in enumerate(db_data):
+        print(f"read base {idx} - {item}")
         with open(f"product_{idx + 1}.jpg", "rb") as image:
             await message.answer_photo(image, f"Name: {item[1]}| Desc.: {item[2]} | Price: {item[3]} ")
     await message.answer("Choose our products: ", reply_markup = in_buy_kb)
@@ -152,7 +153,7 @@ async def send_calories(message, state):
         return man, woman
  
     man_norm, woman_norm = f_Miff_Jeor(data)
-    await message.answer(f"Calories norma for man: {man_norm}; norma for woman: {woman_norm}")
+    await message.answer(f"Calories norma for man: {man_norm}; norma for woman: {woman_norm}", reply_markup=out_kb)
     await state.finish()
 
 @dp.message_handler(state=RegistrationState.username)
@@ -176,7 +177,7 @@ async def set_age(message, state):
     await state.update_data(age=message.text)
     new_user = await state.get_data()
     add_user(new_user["username"], new_user["email"], new_user["age"])
-    await message.answer(f"Congratuation: user {new_user['username']} has added")
+    await message.answer(f"Congratuation: user {new_user['username']} has added", reply_markup=out_kb)
     await state.finish()
 
 
@@ -191,7 +192,7 @@ async def all_messages(message):
 
 
 if __name__ == '__main__':
-    initiate_db("not_telegram.dp")
+    initiate_db("shop_bot.dp")
         
     prod_list = [("Mighty Leaf", "Leaf's armor makes you safe", 100),
                 ("Eternal Metal", "E-Metal makes you strong or flexible at the right moment", 200),
