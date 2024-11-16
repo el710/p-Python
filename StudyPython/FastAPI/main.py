@@ -26,7 +26,10 @@ import module_16
 
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Path
+from typing import Annotated
+import os
+import sys
 
 app = FastAPI()
 
@@ -51,6 +54,36 @@ async def id_paginator(username: str = "vasya", age: int = 34) -> dict: ## with 
 
 
 ### adress-type request: *.org/user/A/B
-@app.get("/user/{first_name}/{last_name}")
-async def news(first_name: str, last_name: str) -> dict:
-    return {"message": f"Hello, {first_name} {last_name}"}
+# @app.get("/user/{first_name}/{last_name}")
+# async def news(first_name: str, last_name: str) -> dict:
+#     return {"message": f"Hello, {first_name} {last_name}"}
+
+"""
+    Validate data
+    Path() - set conditions for input data
+        parameters with Path() default should stay in the end of variables list
+        but Annotated[] solve this mess
+        in Path() are used mnemonics: ge - great or equal (>=), le - less or equal (<=) e.t.c
+        
+    also see Pidentic()
+
+
+"""
+# @app.get("/user/{username}/{id}")
+# async def news(username:str = Path(min_length=3, max_length=15, description="Enter your username", example="meuser")
+#                , id:int = Path(ge=0, le=100, description="Enter your id", example="56")) -> dict:
+#     return {"message": f"{username}:{id}"}
+
+@app.get("/user/{username}/{id}")
+async def news(username: Annotated[str, Path(min_length=3, max_length=15, description="Enter your username", example="meuser")]
+               , id: Annotated[int, Path(ge=0, le=100, description="Enter your id", example="56")]
+               , tail: str) -> dict: ## use Annotated to avoid warnings about tail, because tail must be first in this list
+    return {"message": f"{username}:{id}"}
+
+
+if __name__ == "__main__":
+    dir_name, file_name = os.path.split(sys.argv[0])
+    name = os.path.splitext(file_name)[0]
+ 
+    os.chdir(dir_name)
+    os.system(f"python -m uvicorn {name}:app")

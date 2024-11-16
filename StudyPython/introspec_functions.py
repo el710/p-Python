@@ -1,5 +1,5 @@
 """
-introspaction...
+introspection...
 ability of object to give information about itself
 
 - help()
