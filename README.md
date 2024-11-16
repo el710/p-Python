@@ -67,6 +67,9 @@ https://matplotlib.org/stable/users/explain/quick_start.html
 pillow - обработать изображение, например, изменить его размер, применить эффекты и сохранить в другой формат.
 https://pillow.readthedocs.io/en/stable/
 
+## black # python  - форматирует код
+
+
 
 ## Project envirounment:
 1. create project directory
@@ -90,8 +93,8 @@ https://pillow.readthedocs.io/en/stable/
       - choose interpretator handly:
    ctrl + shift + p - python select interpreter
    
-4. Keep file of used packages with pip - 'requirement.txt'
-   pip freeze > <filename> 
+4. Keep file of used packages with pip - 'requirements.txt'
+   pip freeze > requirements.txt
    To restore envirounment: pip install -r <filename>
 
 5. make unit-test directory
@@ -108,3 +111,11 @@ https://pillow.readthedocs.io/en/stable/
    
 9.  make file for untracked dirs/files
    .gitignore <- /venv, /scripts e.t.c
+
+10. Migration between database modules
+    use alembic package:
+    in root of project - alembic init <folder of migrations>
+    see db_sqlalchemic project
+
+    
+    

@@ -6,6 +6,5 @@ def all_variants(text):
     ## ~ 
 
 
-a = all_variants("abc")
-for i in a:
+for i in all_variants("abc"):
     print(i)

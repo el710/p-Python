@@ -45,11 +45,6 @@ def add_user(username, email, age):
         cursor.execute("Insert Into Users (username, email, age, balance) Values(?, ?, ?, 1000)", (username, email, age))
         close_db(connection)
 
-
-    
-
-
-
 def add_product(list):
     connection, cursor = open_db()
             
