@@ -14,7 +14,7 @@
     start app with uvicorn server:  python -m uvicorn main:app !!!NOTE: must be in work directory to see main.py
 """
 """
-basic queries:
+basic queries:  Create Read Update Delete (CRUD)
 - Get: get data from server - adress in string = ?var=value
 - Post: send data to server - new, forms "buing in web shop"
 - Put: send data to server - refresh/replace anything
@@ -26,8 +26,10 @@ import module_16
 
 """
 
-from fastapi import FastAPI, Path
+from fastapi import Body, FastAPI, HTTPException, Path
 from typing import Annotated
+from pydantic import BaseModel
+
 import os
 import sys
 
@@ -90,31 +92,57 @@ async def news(username: Annotated[str, Path(min_length=3, max_length=15, descri
 
 """
 
-message_db = {"0": "First post in FastAPI"}
+# message_db = {"0": "First post in FastAPI"}
+"""
+    make new class for messages with BaseModel
+"""
+message_db = []
+
+class Message(BaseModel):
+    id: int = None
+    text: str
+
 
 @app.get("/")
-async def get_all_message() -> dict:
+#async def get_all_message() -> dict:
+async def get_all_message() -> list[Message]:
     return message_db
 
 @app.get("/message/{message_id}")
-async def get_message(message_id: str) -> dict:
-    return message_db[message_id]
+# async def get_message(message_id: str) -> dict:
+async def get_message(message_id: int) -> Message:
+    try:
+        return message_db[message_id]
+    except IndexError:
+        raise HTTPException(status_code=404, detail="Message not found")
+
 
 @app.post("/message")
-async def create_message(message: str) -> str:
-    current_index = str(int(max(message_db, key=int)) + 1)
-    message_db[current_index] = message
-    return "Message created"
+async def create_message(message: Message) -> str:
+    # current_index = str(int(max(message_db, key=int)) + 1)
+    # message_db[current_index] = message
+
+    message.id = len(message_db)
+    message_db.append(message)
+    return f"Message {message} created"
+
 
 @app.put("/message/{message_id}")
-async def update_message(message_id: str, message: str) -> str:
-    message_db[message_id] = message
-    return "Message update"
+async def update_message(message_id: int, message: str = Body()) -> str:
+    try:
+        edit_message = message_db[message_id]
+        edit_message.text = message
+        return f"Message {edit_message} update"
+    except IndexError:
+        raise HTTPException(status_code=404, detail="Message not found")
 
 @app.delete("/message/{message_id}")
-async def delete_message(message_id: str) -> str:
-    message_db.pop(message_id)
-    return f"Message {message_id} deleted"
+async def delete_message(message_id: int) -> str:
+    try:
+        message_db.pop(message_id)
+        return f"Message ID={message_id} deleted"
+    except IndexError:
+        raise HTTPException(status_code=404, detail="Message not found")
 
 @app.delete("/")
 async def delete_all_messages() -> str:
