@@ -1,10 +1,15 @@
-from fastapi import FastAPI, HTTPException, Path
+from fastapi import FastAPI, HTTPException
 from typing import Annotated
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, ConfigDict
 import os
 import sys
 
+from fastapi.templating import Jinja2Templates
+from fastapi import Request, Path
+
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 users = []
 
@@ -14,9 +19,20 @@ class User(BaseModel):
     age: int
 
 
-@app.get("/users")
-async def get_all_users() -> list[User]:
-    return users
+@app.get("/")
+async def main(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("users.html", {"request": request, "user_base": users} )
+
+@app.get("/user/{user_id}")
+async def show_user(request: Request, user_id: int) -> HTMLResponse:
+    user_hash = None
+    for item in users:
+        if item.id == user_id:
+            user_hash = item
+    if user_hash != None:
+       return templates.TemplateResponse("users.html", {"request": request, "it_user": user_hash} )
+    else:
+        raise HTTPException(status_code=404, detail=f"User {user_id} not found")
 
 @app.post("/user/{username}/{age}")
 async def add_user(username: Annotated[str, Path(min_length=5, max_length=28, description="Enter username", example="Peter")],

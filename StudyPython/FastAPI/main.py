@@ -26,9 +26,17 @@ import module_16
 
 """
 
-from fastapi import Body, FastAPI, HTTPException, Path
-from typing import Annotated
+from fastapi import Body, FastAPI, HTTPException, Path, Request
+from fastapi.responses import HTMLResponse
+### html templates
+from fastapi.templating import Jinja2Templates
+### html forms
+from fastapi import Form
+
+from typing import Annotated, List
 from pydantic import BaseModel
+
+templates = Jinja2Templates(directory="templates")
 
 import os
 import sys
@@ -105,26 +113,34 @@ class Message(BaseModel):
 
 @app.get("/")
 #async def get_all_message() -> dict:
-async def get_all_message() -> list[Message]:
-    return message_db
+async def get_all_message(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse("work.html", {"request": request, "base_messages": message_db})
+
+"""
+@app.get("/message/{message_id}") - all /therms/ in adress are parameters: message, message_id
+"""
 
 @app.get("/message/{message_id}")
 # async def get_message(message_id: str) -> dict:
-async def get_message(message_id: int) -> Message:
-    try:
-        return message_db[message_id]
+async def get_message(request: Request, message_id: int) -> HTMLResponse:
+    try: 
+        return templates.TemplateResponse("work.html", {"request": request, "message": message_db[message_id]})
     except IndexError:
         raise HTTPException(status_code=404, detail="Message not found")
 
 
-@app.post("/message")
-async def create_message(message: Message) -> str:
+@app.post("/")
+async def create_message(request: Request, message: str = Form()) -> HTMLResponse:
     # current_index = str(int(max(message_db, key=int)) + 1)
     # message_db[current_index] = message
 
-    message.id = len(message_db)
-    message_db.append(message)
-    return f"Message {message} created"
+    if message_db:
+        message_id = max(message_db, key=lambda item: item.id).id + 1
+    else:
+        message_id = 0
+
+    message_db.append(Message(id=message_id, text=message))
+    return templates.TemplateResponse("work.html", {"request": request, "base_messages": message_db})
 
 
 @app.put("/message/{message_id}")
