@@ -24,6 +24,8 @@ basic queries:  Create Read Update Delete (CRUD)
 
 import module_16
 
+Основные теги HTML. https://uguide.ru/tablica-osnovnykh-tegov-html-s-primerami
+
 """
 
 from fastapi import Body, FastAPI, HTTPException, Path, Request
