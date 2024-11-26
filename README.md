@@ -113,9 +113,20 @@ https://pillow.readthedocs.io/en/stable/
    .gitignore <- /venv, /scripts e.t.c
 
 10. Migration between database modules
-    use alembic package:
-    in root of project - alembic init <folder of migrations>
-    see db_sqlalchemic project
+    use alembic package: (see db_sqlalchemic & DBAPI projects)
+     1. in root of project - alembic init <folder of migrations>
+     2. in file project\alembic.ini change:
+         - sqlalchemy.url as in "engine"
+     3. in file project\migrations\env.py:
+         - target_metadata = Base.metadata
+         - 
+      After each change in db make: 
+     4. > alembic revision --avtogenerate -m "xxx migration"
+     5. to apply last migration in db:
+         > alembic upgrade head
+     6. 
+    
+    
 
     
     
