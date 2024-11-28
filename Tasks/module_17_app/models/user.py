@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from backend.db import Base
 
 
-class User(Base):
+class UserModel(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String)
@@ -12,4 +12,4 @@ class User(Base):
     lastname = Column(String)
     age = Column(Integer)
     slug = Column(String, unique=True, index=True)
-    tasks = relationship(argument="Task", back_populates="users")
+    link_tasks = relationship(argument="TaskModel", back_populates="link_user")

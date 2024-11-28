@@ -78,7 +78,7 @@ async def id_paginator(username: str = "vasya", age: int = 34) -> dict: ## with 
     #     but Annotated[] solve this mess
     #     in Path() are used mnemonics: ge - great or equal (>=), le - less or equal (<=) e.t.c
         
-    # also see Pidentic()
+    # also see Pydentic()
 
 
 

@@ -51,6 +51,8 @@ https://www.PyPi.org - site with packets for python with <pip> function:
 - pip freeze > <filename> - save to file
 - pip install -r <filename> - install packets by list in file
 
+pip install git+https://github.com/username/repo.git
+
 packets:
 requests - запросить данные с сайта
 https://requests.readthedocs.io/en/latest/index.html
@@ -121,7 +123,7 @@ https://pillow.readthedocs.io/en/stable/
          - target_metadata = Base.metadata
          - 
       After each change in db make: 
-     4. > alembic revision --avtogenerate -m "xxx migration"
+     4. > alembic revision --autogenerate -m "xxx migration"
      5. to apply last migration in db:
          > alembic upgrade head
      6. 

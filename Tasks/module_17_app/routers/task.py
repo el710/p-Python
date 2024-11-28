@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-task_router = APIRouter(prefix="/task", tags=["task"])
+task_router = APIRouter(prefix="/task", tags=["Task"])
 
 @task_router.get("/")
 async def all_task():

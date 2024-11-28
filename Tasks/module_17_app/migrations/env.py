@@ -19,8 +19,8 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 from backend.db import Base
-from models.user import User
-from models.task import Task
+from models.user import UserModel
+from models.task import TaskModel
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

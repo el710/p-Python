@@ -31,7 +31,12 @@ u1 = User(users)
 
 x = 0
 
-y = lambda x: if x: len(users) else: 1
+y = lambda x: x + 1
 
-print(y)
+print(y(x))
+
+
+from slugify import slugify
+
+print(slugify('sdhf'))
 

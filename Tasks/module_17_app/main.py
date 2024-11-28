@@ -5,7 +5,6 @@ from routers.user import user_router
 import sys
 import os
 
-
 app = FastAPI()
 app.include_router(task_router)
 app.include_router(user_router)
