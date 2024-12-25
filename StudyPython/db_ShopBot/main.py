@@ -1,3 +1,7 @@
+"""
+pip install aiogram==2.25.1
+"""
+
 from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 

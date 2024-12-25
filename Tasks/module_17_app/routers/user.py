@@ -7,7 +7,7 @@ from sqlalchemy import select, insert, update, delete
 from slugify import slugify
 
 from backend.db_depends import get_db
-from models.user import UserModel
+from models import *
 from schemas import *
 
 
@@ -25,6 +25,19 @@ async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User {user_id} not found")
     return user
+
+@user_router.get("/user_id/tasks")
+async def tasks_by_user_id(db: Annotated[Session, Depends(get_db)], user_id: int):
+    user = db.scalar(select(UserModel).where(UserModel.id == user_id))
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"User {user_id} not found")
+    
+    tasks = db.scalars(select(TaskModel).where(TaskModel.user_id == user.id)).all()
+    if tasks is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Tasks for user {user_id} not found")
+    
+    return tasks
+
 
 
 @user_router.post("/create")
@@ -59,4 +72,11 @@ async def delete_user(db: Annotated[Session, Depends(get_db)], user_id: int):
     db.execute(delete(UserModel).where(UserModel.id == user_id))
     db.commit()
 
-    return {"status_code": status.HTTP_200_OK, "transaction": f"User {user_id} deleted"}
+    tasks = db.scalars(select(TaskModel).where(TaskModel.user_id == user_id)).all()
+    if tasks:
+        for item in tasks:
+            task = db.execute(delete(TaskModel).where(TaskModel.id == item.id))
+    db.commit()
+
+    return {"status_code": status.HTTP_200_OK, "transaction": f"User {user_id} has deleted"}
+

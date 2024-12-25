@@ -85,46 +85,52 @@ https://pillow.readthedocs.io/en/stable/
             > type python - check set interpreter
 
       
-      This works wrong in VCode:
+      This works not very good in VSCode:
       > python -m venv <venv directory>, venv directory should named 'venv' - common rule
+      .venv/Scripts/activate.bat
+      After restart VScode
+       - need to correct pyenv.cfg and write path to .venv/scripts/python.exe
+       - in terminal use full path to python.exe to use pip from ./venv:
+            scripts> ./python -m pip <list/install e.t.c > to use venv packages
 
-3. Activate project's python interpreter
+
+1. Activate project's python interpreter
    venv/Scripts/activate.bat
    if it doesn't work
       - need to restart terminal
       - choose interpretator handly:
    ctrl + shift + p - python select interpreter
    
-4. Keep file of used packages with pip - 'requirements.txt'
+2. Keep file of used packages with pip - 'requirements.txt'
    pip freeze > requirements.txt
    To restore envirounment: pip install -r <filename>
 
-5. make unit-test directory
+3. make unit-test directory
       - make TestCases | tests | TestSuites | runner
 
-6. make package directories
+4. make package directories
       - make __init__.py file
       - add 'import <package dir name>'
 
-7. make logging system
+5. make logging system
    
-8. make repository
+6. make repository
    git init
    
-9.  make file for untracked dirs/files
+7.  make file for untracked dirs/files
    .gitignore <- /venv, /scripts e.t.c
 
-10. Migration between database modules
+8.  Migration between database modules
     use alembic package: (see db_sqlalchemic & DBAPI projects)
      1. in root of project - alembic init <folder of migrations>
      2. in file project\alembic.ini change:
          - sqlalchemy.url as in "engine"
      3. in file project\migrations\env.py:
+         - add models 
          - target_metadata = Base.metadata
-         - 
       After each change in db make: 
      4. > alembic revision --autogenerate -m "xxx migration"
-     5. to apply last migration in db:
+     5. to apply last migration in db: (create tables at zero migration)
          > alembic upgrade head
      6. 
     
