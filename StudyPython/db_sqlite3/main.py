@@ -101,11 +101,11 @@ print(f"Min-Max: {min_age} - {max_age}")
 
 
 """
-    save data in base - !!! without this there is nothing will be in table
+    save data in base - !!! without this there will be nothing in table
 """
 connection.commit()
 
 """
-    close connection - !!! without this there is nothing will be in table
+    close connection - !!! without this there will be nothing in table
 """
 connection.close()

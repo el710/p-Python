@@ -1,2 +1,6 @@
 distrib
+packDjango
 *.pyc
+.idea
+.vscode
+FastAPI

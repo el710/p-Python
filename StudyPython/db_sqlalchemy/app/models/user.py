@@ -2,8 +2,10 @@
     ORM Application model User() for database 'Users'
 
 """
-
-from ..database import Base
+try:
+    from ..database import Base
+except:
+    from database import Base
 from sqlalchemy import Column, String, ForeignKey, Integer
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 

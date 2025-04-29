@@ -1,9 +1,9 @@
 from fastapi import HTTPException, status
-from .models import BookModel, UserModel
 from sqlalchemy.orm import Session
 from sqlalchemy import insert, select
 
-from .schemas.user import User
+from schemas.user import User
+from models import BookModel, UserModel
 
 """
     make user...

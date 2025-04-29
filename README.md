@@ -80,47 +80,36 @@ https://pillow.readthedocs.io/en/stable/
        
        !!!Use package:
             for vscode we need: > pip install pipenv (vs code may offer to create virtual envirounment...)
+            set environment var PIPENV_VENV_IN_PROJECT...
+
+
             > pipenv shell
             ctrl + shift + p - python select interpreter
             > type python - check set interpreter
 
-      
-      This works not very good in VSCode:
-      > python -m venv <venv directory>, venv directory should named 'venv' - common rule
-      .venv/Scripts/activate.bat
-      After restart VScode
-       - need to correct pyenv.cfg and write path to .venv/scripts/python.exe
-       - in terminal use full path to python.exe to use pip from ./venv:
-            scripts> ./python -m pip <list/install e.t.c > to use venv packages
-
-
-1. Activate project's python interpreter
-   venv/Scripts/activate.bat
-   if it doesn't work
-      - need to restart terminal
-      - choose interpretator handly:
+3. Activate project's python interpreter
    ctrl + shift + p - python select interpreter
    
-2. Keep file of used packages with pip - 'requirements.txt'
+4. Keep file of used packages with pip - 'requirements.txt'
    pip freeze > requirements.txt
    To restore envirounment: pip install -r <filename>
 
-3. make unit-test directory
+5. make unit-test directory
       - make TestCases | tests | TestSuites | runner
 
-4. make package directories
+6. make package directories
       - make __init__.py file
       - add 'import <package dir name>'
 
-5. make logging system
+7. make logging system
    
-6. make repository
+8. make repository
    git init
    
-7.  make file for untracked dirs/files
+9.  make file for untracked dirs/files
    .gitignore <- /venv, /scripts e.t.c
 
-8.  Migration between database modules
+10. Migration between database modules
     use alembic package: (see db_sqlalchemic & DBAPI projects)
      1. in root of project - alembic init <folder of migrations>
      2. in file project\alembic.ini change:
@@ -132,7 +121,10 @@ https://pillow.readthedocs.io/en/stable/
      4. > alembic revision --autogenerate -m "xxx migration"
      5. to apply last migration in db: (create tables at zero migration)
          > alembic upgrade head
-     6. 
+     6. back:
+	> alembic downgrade -1
+	or
+	> alembic downgrade <migration_id>
     
     
 

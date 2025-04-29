@@ -1,1 +1,1 @@
-from user import User as SchemeUser
+from .user import User as SchemeUser
